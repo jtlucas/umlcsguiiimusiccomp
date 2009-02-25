@@ -22,6 +22,9 @@ import edu.uml.cs.GUIProgramming.MusicComp.*;
  */
 public class Menus extends javax.swing.JFrame {
 
+  /** the following is required to keep NetBeans happy */
+  static final long serialVersionUID = 0 ;
+
   /** The main application for reference within this class. */
   Main mainApp = null;
 
