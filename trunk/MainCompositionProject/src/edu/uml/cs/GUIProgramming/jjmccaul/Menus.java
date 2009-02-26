@@ -114,7 +114,7 @@ public class Menus extends javax.swing.JFrame {
     }//GEN-LAST:event_menuitemExitActionPerformed
 
   /**
-   * 
+   * This method is intended to be called from other classes.
    * @param jfrm
    */
   public void attachMenubar( JFrame jfrm ) {
