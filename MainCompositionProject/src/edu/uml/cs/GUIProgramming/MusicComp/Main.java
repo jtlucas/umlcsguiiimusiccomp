@@ -35,7 +35,7 @@ public class Main extends javax.swing.JFrame {
     initComponents();
     GUIUtilities.setMainWindowLocation( this, null, "GUIMusicCompositionProject" );
     menus = new Menus( this );
-    menus.addMainMenus();
+    menus.attachMenubar( this );
   }
 
   /** This method is called from within the constructor to

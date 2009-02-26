@@ -11,6 +11,7 @@
 package edu.uml.cs.GUIProgramming.jjmccaul;
 
 import edu.uml.cs.GUIProgramming.MusicComp.*;
+import javax.swing.JFrame;
 
 /**
  * This class contains the code to generate the application menus.
@@ -53,11 +54,25 @@ public class Menus extends javax.swing.JFrame {
 
     menubarMain = new javax.swing.JMenuBar();
     menuFile = new javax.swing.JMenu();
+    jMenuItem1 = new javax.swing.JMenuItem();
+    jMenuItem2 = new javax.swing.JMenuItem();
+    jMenuItem3 = new javax.swing.JMenuItem();
+    jSeparator1 = new javax.swing.JSeparator();
     menuitemExit = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     menuFile.setText("File");
+
+    jMenuItem1.setText("jMenuItem1");
+    menuFile.add(jMenuItem1);
+
+    jMenuItem2.setText("jMenuItem2");
+    menuFile.add(jMenuItem2);
+
+    jMenuItem3.setText("jMenuItem3");
+    menuFile.add(jMenuItem3);
+    menuFile.add(jSeparator1);
 
     menuitemExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
     menuitemExit.setText("Exit");
@@ -99,35 +114,13 @@ public class Menus extends javax.swing.JFrame {
     }//GEN-LAST:event_menuitemExitActionPerformed
 
   /**
-   * Add menus to the main application.  
-   * <p>All of this code is copied directly from the NetBeans-generated code above.
-   * The only change is in the last line, where the constructed menu is added to the
-   * mainApp object, which was initialized in the one-parameter constructor, rather
-   * than "this" (the JFrame for the Menus class).<p>
+   * 
+   * @param jfrm
    */
-  public void addMainMenus() {
-    menubarMain = new javax.swing.JMenuBar();
-    menuFile = new javax.swing.JMenu();
-    menuitemExit = new javax.swing.JMenuItem();
-
-    setDefaultCloseOperation( javax.swing.WindowConstants.EXIT_ON_CLOSE );
-
-    menuFile.setText( "File" );
-
-    menuitemExit.setAccelerator( javax.swing.KeyStroke.getKeyStroke( java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK ) );
-    menuitemExit.setText( "Exit" );
-    menuitemExit.addActionListener( new java.awt.event.ActionListener() {
-      public void actionPerformed( java.awt.event.ActionEvent evt ) {
-        menuitemExitActionPerformed( evt );
-      }
-    } );
-    menuFile.add( menuitemExit );
-
-    menubarMain.add( menuFile );
-
-    // note the specification of the main application JFrame object
-    mainApp.setJMenuBar( menubarMain );
+  public void attachMenubar( JFrame jfrm ) {
+    jfrm.setJMenuBar( menubarMain );
   }
+
 
   /**
    * The standard Java main method.
@@ -143,6 +136,10 @@ public class Menus extends javax.swing.JFrame {
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JMenuItem jMenuItem1;
+  private javax.swing.JMenuItem jMenuItem2;
+  private javax.swing.JMenuItem jMenuItem3;
+  private javax.swing.JSeparator jSeparator1;
   /** the File menu on the main applicatoin menu bar */
   private javax.swing.JMenu menuFile;
   /** the main application menu bar */
