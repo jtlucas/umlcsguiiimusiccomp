@@ -12,6 +12,7 @@ package edu.uml.cs.GUIProgramming.MusicComp;
 
 import edu.uml.cs.GUIProgramming.heines.*;
 import edu.uml.cs.GUIProgramming.jjmccaul.*;
+import edu.uml.cs.GUIProgramming.jtlucas.*;
 
 /**
  * This is the main driver for the entire music composition program.
@@ -29,6 +30,9 @@ public class Main extends javax.swing.JFrame {
   /** the Menus object in package jjmccaul by James */
   Menus menus;
 
+  /** the WindowSize object in package jtlucas by Jesse L. */
+  JTL_WindowSize WindowSize;
+
   /** Creates new form Main */
   public Main() {
     GUIUtilities.SetNetBeansCompatibleUIManager();
@@ -36,6 +40,8 @@ public class Main extends javax.swing.JFrame {
     GUIUtilities.setMainWindowLocation( this, null, "GUIMusicCompositionProject" );
     menus = new Menus( this );
     menus.attachMenubar( this );
+    WindowSize = new JTL_WindowSize( this );
+    WindowSize.setWindowSize( this );
   }
 
   /** This method is called from within the constructor to

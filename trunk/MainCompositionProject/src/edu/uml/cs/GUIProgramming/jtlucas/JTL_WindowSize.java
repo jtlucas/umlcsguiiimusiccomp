@@ -49,44 +49,44 @@ public class JTL_WindowSize extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jScrollPane1 = new javax.swing.JScrollPane();
-    jPanel1 = new javax.swing.JPanel();
+    jspCanvas = new javax.swing.JScrollPane();
+    jplCanvas = new javax.swing.JPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setMinimumSize(new java.awt.Dimension(800, 700));
+    setMinimumSize(new java.awt.Dimension(820, 700));
 
-    jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-    jScrollPane1.setMaximumSize(new java.awt.Dimension(800, 530));
-    jScrollPane1.setMinimumSize(new java.awt.Dimension(800, 530));
-    jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 530));
+    jspCanvas.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    jspCanvas.setMaximumSize(new java.awt.Dimension(800, 530));
+    jspCanvas.setMinimumSize(new java.awt.Dimension(800, 530));
+    jspCanvas.setPreferredSize(new java.awt.Dimension(800, 530));
 
-    jPanel1.setMaximumSize(new java.awt.Dimension(3000, 508));
-    jPanel1.setMinimumSize(new java.awt.Dimension(3000, 508));
-    jPanel1.setPreferredSize(new java.awt.Dimension(3000, 508));
+    jplCanvas.setMaximumSize(new java.awt.Dimension(3000, 508));
+    jplCanvas.setMinimumSize(new java.awt.Dimension(3000, 508));
+    jplCanvas.setPreferredSize(new java.awt.Dimension(3000, 508));
 
-    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-    jPanel1.setLayout(jPanel1Layout);
-    jPanel1Layout.setHorizontalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout jplCanvasLayout = new javax.swing.GroupLayout(jplCanvas);
+    jplCanvas.setLayout(jplCanvasLayout);
+    jplCanvasLayout.setHorizontalGroup(
+      jplCanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 3000, Short.MAX_VALUE)
     );
-    jPanel1Layout.setVerticalGroup(
-      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    jplCanvasLayout.setVerticalGroup(
+      jplCanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 511, Short.MAX_VALUE)
     );
 
-    jScrollPane1.setViewportView(jPanel1);
+    jspCanvas.setViewportView(jplCanvas);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(jspCanvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
-        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(jspCanvas, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap(170, Short.MAX_VALUE))
     );
 
@@ -99,7 +99,8 @@ public class JTL_WindowSize extends javax.swing.JFrame {
      * @param jfrm
      */
      public void setWindowSize( JFrame jfrm ) {
-       jfrm.setMinimumSize(new java.awt.Dimension(800, 700) );
+       jfrm.setMinimumSize(new java.awt.Dimension(820, 700));
+       jfrm.setPreferredSize(new java.awt.Dimension(820, 700));
      }
 
      /**
@@ -138,8 +139,8 @@ public class JTL_WindowSize extends javax.swing.JFrame {
      }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JPanel jPanel1;
-  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JPanel jplCanvas;
+  private javax.swing.JScrollPane jspCanvas;
   // End of variables declaration//GEN-END:variables
 
 }
