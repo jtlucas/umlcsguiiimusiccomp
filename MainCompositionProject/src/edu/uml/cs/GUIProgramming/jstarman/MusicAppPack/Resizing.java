@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package MusicAppPack;
+package edu.uml.cs.GUIProgramming.jstarman.MusicAppPack;
 
 /**
  *
