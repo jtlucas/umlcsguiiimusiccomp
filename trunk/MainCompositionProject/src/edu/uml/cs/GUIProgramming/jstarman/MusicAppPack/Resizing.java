@@ -88,7 +88,7 @@ class Resizer extends MouseAdapter {
         dragging = false;
         moving = false;
         try {
-            playNote();
+            playNote();//play the note when mouse is released
         } catch (InterruptedException ex) {
             Logger.getLogger(Resizer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -241,6 +241,8 @@ class Resizer extends MouseAdapter {
         return r.contains(p);
     }
 
+
+    //
     public void playNote() throws InterruptedException
     {
        try
@@ -248,33 +250,34 @@ class Resizer extends MouseAdapter {
 
 
 
-
+            //getting the rectangle component
             Rectangle r = component.rect;
            
             
-               // sequencer.setSequence(sequence);
-                //MouseEvent e = null;
-                //Point p = e.getPoint();
-                //System.err.println("p.x = " + p.x);
-                //System.err.println("p x = " + x);
             Synthesizer synth = MidiSystem.getSynthesizer();
             synth.open();
+            //getting every channel and assigning it to position in the channel array
             MidiChannel[] channels = synth.getChannels();
             //int volume = ((r.x+25)/2);
+
+            //calculating volume based on shape size, this will change though
             double volume = ((int)r.height / 1.5);
             int intVolume = (int)volume;
 
+            //max volume is 127 so we want to make sure it cannot be louder
             if(intVolume > 127){
                 intVolume = 127;
             }
 
+            //making an calculation for pitchbend based on pixels, but this will change
             int pitchBend = r.y  * 71;
             System.err.println("pitchbend = " + pitchBend);
             System.err.println("height " + r.height);
 
-            channels[1].setPitchBend(pitchBend); //0-16383
-            channels[1].setPolyPressure(65,127);
+            channels[1].setPitchBend(pitchBend); //setting the pitch bend based on y position of shape
+            channels[1].setPolyPressure(65,127); //testing duration, but doesn't seem to be doing anything
 
+            //play the note
             channels[1].noteOn(65, intVolume);
 
       
