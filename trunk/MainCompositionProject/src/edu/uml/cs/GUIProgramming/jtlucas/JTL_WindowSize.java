@@ -15,8 +15,12 @@ import edu.uml.cs.GUIProgramming.MusicComp.*;
 import javax.swing.*;
 
 /**
- *
- * @author JTLucas
+ * This class contains the code to generate the application window sizes.
+ * @author Jesse T. Lucas, UMass Lowell Computer Science
+ * @author <a href="mailto:jtlucas@cs.uml.edu">heines@cs.uml.edu</a>
+ * @version 1.0, March 3, 2009
+ * Copyright &copy; 2009 by Jesse T. Lucas.  All rights reserved.  May be freely
+ *     copied or excerpted for educational purposes with credit to the author.
  */
 public class JTL_WindowSize extends javax.swing.JFrame {
 
@@ -53,12 +57,12 @@ public class JTL_WindowSize extends javax.swing.JFrame {
     jplCanvas = new javax.swing.JPanel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    setMinimumSize(new java.awt.Dimension(820, 700));
+    setMinimumSize(new java.awt.Dimension(800, 700));
 
     jspCanvas.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-    jspCanvas.setMaximumSize(new java.awt.Dimension(800, 530));
-    jspCanvas.setMinimumSize(new java.awt.Dimension(800, 530));
-    jspCanvas.setPreferredSize(new java.awt.Dimension(800, 530));
+    jspCanvas.setMaximumSize(new java.awt.Dimension(780, 530));
+    jspCanvas.setMinimumSize(new java.awt.Dimension(780, 530));
+    jspCanvas.setPreferredSize(new java.awt.Dimension(780, 530));
 
     jplCanvas.setMaximumSize(new java.awt.Dimension(3000, 508));
     jplCanvas.setMinimumSize(new java.awt.Dimension(3000, 508));
@@ -81,7 +85,7 @@ public class JTL_WindowSize extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(jspCanvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(jspCanvas, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,8 +103,8 @@ public class JTL_WindowSize extends javax.swing.JFrame {
      * @param jfrm
      */
      public void setWindowSize( JFrame jfrm ) {
-       jfrm.setMinimumSize(new java.awt.Dimension(820, 700));
-       jfrm.setPreferredSize(new java.awt.Dimension(820, 700));
+       jfrm.setMinimumSize(new java.awt.Dimension(800, 700));
+       jfrm.setPreferredSize(new java.awt.Dimension(800, 700));
      }
 
      /**
@@ -109,10 +113,10 @@ public class JTL_WindowSize extends javax.swing.JFrame {
      * @param jspane
      */
      public void setScrollPaneSize( JScrollPane jspane ) {
-       //Set all jscroll pane sizes to be Width = 800, Height = 530.
-       jspane.setMinimumSize(new java.awt.Dimension(800, 530));
-       jspane.setMaximumSize(new java.awt.Dimension(800, 530));
-       jspane.setPreferredSize(new java.awt.Dimension(800, 530));
+       //Set all jscroll pane sizes to be Width = 780, Height = 530.
+       jspane.setMinimumSize(new java.awt.Dimension(780, 530));
+       jspane.setMaximumSize(new java.awt.Dimension(780, 530));
+       jspane.setPreferredSize(new java.awt.Dimension(780, 530));
      }
 
      /**
@@ -139,7 +143,9 @@ public class JTL_WindowSize extends javax.swing.JFrame {
      }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  /** This is the panel that represents the canvas */
   private javax.swing.JPanel jplCanvas;
+  /** The scroll pane that contains the canvas */
   private javax.swing.JScrollPane jspCanvas;
   // End of variables declaration//GEN-END:variables
 
