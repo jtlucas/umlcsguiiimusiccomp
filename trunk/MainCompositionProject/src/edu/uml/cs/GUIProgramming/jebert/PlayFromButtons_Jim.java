@@ -16,6 +16,7 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
+
 /**
  * This class allows the user to create a sequence of WAV files to play by
  * clicking buttons.  The clicks are automatically stored, and when the Play
@@ -25,7 +26,7 @@ import javax.swing.SwingWorker;
  * @author  <a href="heines@cs.uml.edu">heines@cs.uml.edu</a>
  * @version 1.2, 2008-04-27, April 27, 2008
  */
-public class PlayFromButtons extends javax.swing.JFrame {
+public class PlayFromButtons_Jim extends javax.swing.JFrame {
   
   /**
    * sequence of buttons pressed
@@ -40,7 +41,7 @@ public class PlayFromButtons extends javax.swing.JFrame {
     
 
   /** Creates new form PlayFromButtons */
-  public PlayFromButtons() {
+  public PlayFromButtons_Jim() {
     // set the UI manager
     if ( ! GUIUtilities.SetNetBeansCompatibleUIManager() ) {
       System.exit( 1 );  // abort run
@@ -435,7 +436,7 @@ public class PlayFromButtons extends javax.swing.JFrame {
   public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new PlayFromButtons().setVisible(true);
+        new PlayFromButtons_Jim().setVisible(true);
       }
     });
   }
@@ -591,7 +592,6 @@ class Advance extends Thread
     // End of variables declaration//GEN-END:variables
   
 }
-
 class Start extends Thread
 {
     private JProgressBar jpb;
