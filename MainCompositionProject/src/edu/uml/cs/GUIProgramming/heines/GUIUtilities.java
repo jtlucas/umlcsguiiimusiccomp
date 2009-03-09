@@ -4,6 +4,7 @@
  * Copyright (c) 2008 by Jesse M. Heines.  All rights reserved.  May be freely 
  *   copied or excerpted for educational purposes with credit to the author.
  * created by JMH on February 28, 2008 at 11:07 AM
+ * updated by JMH on March 8, 2009 at 11:02 PM
  */
 package edu.uml.cs.GUIProgramming.heines;
 
@@ -225,7 +226,8 @@ public class GUIUtilities {
   }
 
   /**
-   *
+   * Set the location of a JFrame using the values in a specified properties file 
+   * at a specified location.
    * @param jfrm the JFrame whose properties are to be set
    * @param strPropertiesFilePath path to properties file, default = "user.home/Application Data/UMassLowellCS"
    * @param strPropertiesFileName name of properties file, default = "GUIProgramming.properties" ;
