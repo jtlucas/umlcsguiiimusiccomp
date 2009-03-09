@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Document   : Music2.xml
+  Created on : February 17, 2009, 9:09 AM
+  Author     : Ross Caisse
+  Description:
+      This is a simple XML document used to demonstrate reading an XML
+      file from Java.
+-->
+
+<composition>
+    <note>
+        <x>100</x>
+        <y>125</y>
+        <type>circle</type>
+        <height>100</height>
+        <width>100</width>
+    </note>
+    <note>
+        <x>50</x>
+        <y>75</y>
+        <type>circle</type>
+        <height>200</height>
+        <width>200</width>
+    </note>
+</composition>
