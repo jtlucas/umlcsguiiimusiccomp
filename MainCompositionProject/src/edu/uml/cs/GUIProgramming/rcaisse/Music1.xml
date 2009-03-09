@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<composition>
+    <note>
+        <x>20</x>
+        <y>15</y>
+        <type>square</type>
+        <height>25</height>
+        <width>30</width>
+    </note>
+    <note>
+        <x>10</x>
+        <y>20</y>
+        <type>square</type>
+        <height>100</height>
+        <width>150</width>
+    </note>
+    <note>
+        <x>50</x>
+        <y>75</y>
+        <type>triangle</type>
+        <height>100</height>
+        <width>150</width>
+    </note>
+    <note>
+        <x>100</x>
+        <y>125</y>
+        <type>circle</type>
+        <height>100</height>
+        <width>100</width>
+    </note>
+</composition>
