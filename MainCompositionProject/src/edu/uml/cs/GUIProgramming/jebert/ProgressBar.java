@@ -9,7 +9,7 @@
  * Created on Mar 2, 2009, 10:27:10 PM
  */
 
-package practice;
+package edu.uml.cs.GUIProgramming.jebert;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -23,12 +23,16 @@ import javax.swing.SwingUtilities;
  */
 public class ProgressBar extends javax.swing.JFrame {
 
+  /** the following is required to keep NetBeans happy */
+  static final long serialVersionUID = 0 ;
+
     private int i;
     /** Creates new form ProgressBar */
-    public ProgressBar() {
-        initComponents();
 
-        jbrProg.setMaximum(100);
+    public ProgressBar() {
+      initComponents();
+
+      jbrProg.setMaximum(100);
     }
 
     /** This method is called from within the constructor to
@@ -80,13 +84,16 @@ public class ProgressBar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnStartActionPerformed
-        Start s = new Start(jbrProg);
-        for(int i = 10; i != 100; i += 10)
-        {
-            s.setInc(i);
-            //Start s = new Start(jbrProg, i);
-            s.start();
-        }
+      Thread thread = new Thread( new Start_v2(this, jbrProg) ) ;
+      thread.start();
+      // Start_v2 s = new Start_v2(this, jbrProg);
+      // s.run();
+//        for(int i = 10; i != 100; i += 10)
+//        {
+//            s.setInc(i);
+//            //Start s = new Start(jbrProg, i);
+//            s.start();
+//        }
     }//GEN-LAST:event_jbtnStartActionPerformed
 
     /**
@@ -105,7 +112,41 @@ public class ProgressBar extends javax.swing.JFrame {
     private javax.swing.JButton jbtnStart;
     // End of variables declaration//GEN-END:variables
 
+    public void setProgressBarValue( int value ) {
+      jbrProg.setValue( value );
+    }
+
 }
+
+
+
+class Start_v2 implements Runnable {
+  ProgressBar theApp ;
+  JProgressBar jpb ;
+
+  public Start_v2(ProgressBar theApp, JProgressBar jpb) {
+    this.theApp = theApp ;
+    this.jpb = jpb ;
+  }
+
+  public void run() {
+    for ( int k = 1 ; k <= 10 ; k++ ) {
+      simulate() ;
+      theApp.setProgressBarValue( k*10 );
+    }
+  }
+
+  private void simulate()
+  {
+    try {
+      // System.err.println( "Sleeping..." ) ;
+      Thread.currentThread().sleep(500);
+    } catch (InterruptedException ex) {
+      System.out.println(ex.getMessage());
+    }
+  }
+}
+
 
 class Start extends Thread
 {
