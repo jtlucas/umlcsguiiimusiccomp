@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JComponent;
@@ -45,8 +46,12 @@ public class Canvas extends JPanel implements Scrollable {
         addMouseListener(resizer);
         addMouseMotionListener(resizer);
         setSize(buffer.getWidth(), buffer.getHeight());
-        shapes.add(MovableShape.CreateRect(100, 100, 100, 100));
-        shapes.add(MovableShape.CreateRect(150, 150, 100, 100));
+        //shapes.add(MovableShape.CreateRect(100, 100, 100, 100));
+        //shapes.add(MovableShape.CreateRect(200, 200, 100, 100));
+        shapes.add(MovableShape.CreateRegularNgon(new Point2D.Double(100, 100), 50, 3));
+        shapes.add(MovableShape.CreateRegularNgon(new Point2D.Double(200, 100), 50, 4));
+        shapes.add(MovableShape.CreateRegularNgon(new Point2D.Double(100, 200), 50, 5));
+        shapes.add(MovableShape.CreateRegularNgon(new Point2D.Double(200, 200), 50, 6));
     }
 
     public Canvas(ArrayList<MovableShape> shapes) {
