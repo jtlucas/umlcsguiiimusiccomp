@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.Arrays;
 
@@ -39,12 +40,27 @@ public class MovableShape extends Polygon {
     private static final Rectangle selRect = new Rectangle(-2, -2, 4, 4);
     private static final Rectangle clickRect = new Rectangle(-4, -4, 8, 8);
 
+    //<editor-fold defaultstate="collapsed" desc="Utility Functions">
+    //private static Point intersect(Point l1p1, Point l1p2, Point l2p1, Point l2p2) {
+    //}
+    //</editor-fold>
     public static MovableShape CreateRect(double x, double y, double width, double height) {
         MovableShape shape = new MovableShape();
         shape.addPoint(x, y);
         shape.addPoint(x + width, y);
         shape.addPoint(x + width, y + height);
         shape.addPoint(x, y + height);
+        return shape;
+    }
+
+    public static MovableShape CreateRegularNgon(Point2D.Double center, double radius, int count) {
+        MovableShape shape = new MovableShape();
+        double start = Math.PI / 2 - Math.PI / count;
+        double step = Math.PI * 2 / count;
+        for (int i = 0; i < count; i++) {
+            shape.addPoint(center.x + Math.cos(start + step * i) * radius,
+                center.y + Math.sin(start + step * i) * radius);
+        }
         return shape;
     }
 
@@ -246,65 +262,65 @@ public class MovableShape extends Polygon {
         if (vertex == -1) {
             for (int i = 0; i < npoints; i++) {
                 this.intypoints[i] -= amount;
-                this.ypoints[i] = (int)intypoints[i];
+                this.ypoints[i] = (int) intypoints[i];
             }
         } else if (vertex < npoints) {
             this.intypoints[vertex] -= amount;
-            ypoints[vertex] = (int)intypoints[vertex];
+            ypoints[vertex] = (int) intypoints[vertex];
         }
         invalidate();
     }
 
     /**
-     * Move the specified vertex down a pixel
-     * @param vertex Index of the vertex to change
-     * @param amount Amount to move the vertex
+     * Moves the selected vertex/edge down
+     * @param vertex Index of the vertex/edge to change
+     * @param amount Amount to move the vertex/edge
      */
     public void MoveDown(int vertex, int amount) {
         if (vertex == -1) {
             for (int i = 0; i < npoints; i++) {
                 intypoints[i] += amount;
-                ypoints[i] = (int)intypoints[i];
+                ypoints[i] = (int) intypoints[i];
             }
         } else if (vertex < npoints) {
             intypoints[vertex] += amount;
-            ypoints[vertex] = (int)intypoints[vertex];
+            ypoints[vertex] = (int) intypoints[vertex];
         }
         invalidate();
     }
 
     /**
-     * Move the specified vertex left a pixel
-     * @param vertex Index of the vertex to change
-     * @param amount Amount to move the vertex
+     * Moves the selected vertex/edge up
+     * @param vertex Index of the vertex/edge to change
+     * @param amount Amount to move the vertex/edge
      */
     public void MoveLeft(int vertex, int amount) {
         if (vertex == -1) {
             for (int i = 0; i < npoints; i++) {
                 intxpoints[i] -= amount;
-            xpoints[i] = (int)intxpoints[i];
+                xpoints[i] = (int) intxpoints[i];
             }
         } else if (vertex < npoints) {
             intxpoints[vertex] -= amount;
-            xpoints[vertex] = (int)intxpoints[vertex];
+            xpoints[vertex] = (int) intxpoints[vertex];
         }
         invalidate();
     }
 
     /**
-     * Move the specified vertex right a pixel
-     * @param vertex Index of the vertex to change
-     * @param amount Amount to move the vertex
+     * Moves the selected vertex/edge right
+     * @param vertex Index of the vertex/edge to change
+     * @param amount Amount to move the vertex/edge
      */
     public void MoveRight(int vertex, int amount) {
         if (vertex == -1) {
             for (int i = 0; i < npoints; i++) {
                 intxpoints[i] += amount;
-                xpoints[i] = (int)intxpoints[i];
+                xpoints[i] = (int) intxpoints[i];
             }
         } else if (vertex < npoints) {
             intxpoints[vertex] += amount;
-            xpoints[vertex] = (int)intxpoints[vertex];
+            xpoints[vertex] = (int) intxpoints[vertex];
         }
         invalidate();
     }
