@@ -4,8 +4,9 @@
  * Created on April 15, 2008, 12:30 PM
  */
 
-package edu.uml.cs.GUIProgramming;
+package edu.uml.cs.GUIProgramming.jebert;
 
+import edu.uml.cs.GUIProgramming.heines.GUIUtilities;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Vector;
 import java.util.logging.Level;
