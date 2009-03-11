@@ -19,7 +19,7 @@ public class Orchestra {
     MidiChannel midiChannels[];
     int selectedChannel;
 
-    Orchestra()
+    public Orchestra()
     {
         try {
           if ( synthesizer == null ) {
