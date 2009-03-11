@@ -9,14 +9,10 @@ package edu.uml.cs.GUIProgramming.jstarman;
  *
  * @author James
  */
+//import edu.uml.cs.GUIProgramming.jjmccaul.JMAddOns; //having issue with this at the moment.
+import edu.uml.cs.GUIProgramming.plaidler.Orchestra;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.midi.MidiChannel;
-import javax.sound.midi.MidiSystem;
-import javax.sound.midi.MidiUnavailableException;
-import javax.sound.midi.Synthesizer;
 import javax.swing.*;
 
 public class Resizing extends JPanel {
@@ -75,12 +71,8 @@ class Resizer extends MouseAdapter {
     public void mouseReleased(MouseEvent e) {
         dragging = false;
         jmao.inRect(component, e);
-
-        try {
-            playNote();//play the note when mouse is released
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Resizer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        playNote();//play the note when mouse is released
+    
 
     }
 
@@ -208,65 +200,64 @@ class Resizer extends MouseAdapter {
         }
     }
 
-    public void playNote() throws InterruptedException
+    public void playNote() 
     {
-       try
-        {
-            //getting the rectangle component
-            Rectangle r = component.rect;
+
+        //using Paul's class to handle playing the note.
+        Orchestra myOrchestra = new Orchestra();
+
+        //getting the rectangle component
+        Rectangle r = component.rect;
+
+        //calculation duration of note based on shape width,
+        //max duration will be slightly longer then 2 seconds.
+        double doubleDuration = ((int)r.width * 4);
+        int duration = (int)doubleDuration;
 
 
-            Synthesizer synth = MidiSystem.getSynthesizer();
-            synth.open();
-            //getting every channel and assigning it to position in the channel array
-            MidiChannel[] channels = synth.getChannels();
-            //int volume = ((r.x+25)/2);
+        //calculating volume based on shape height, this will change though
+        double doubleVolume = ((int)r.height / 2);
+        int volume = (int)doubleVolume;
 
-            //calculating volume based on shape size, this will change though
-            double volume = ((int)r.height / 2);
-            int intVolume = (int)volume;
+        //max volume is 127 so we want to make sure it cannot be louder
+        if(volume > 127){
+            volume = 127;
+        }
 
-            //max volume is 127 so we want to make sure it cannot be louder
-            if(intVolume > 127){
-                intVolume = 127;
-            }
+        //making an calculation for pitchbend based on pixels
+        //here I am setting the pitch based on increments
+        //the reason was when I seemed to use any pitchBend based on height of object
+        //it would sometimes not play the sound or play an awkward sound.
+        int pitchBend = r.y  ;
 
-            //making an calculation for pitchbend based on pixels, but this will change
-            int pitchBend = r.y  * 71;
-            System.err.println("pitchbend = " + pitchBend);
-            System.err.println("height " + r.height);
+        if(pitchBend <= 42){
+            pitchBend = 80;
+        }
+        else if(pitchBend <= 84){
+            pitchBend = 70;
+        }
+        else if(pitchBend <= 126){
+            pitchBend = 60;
+        }
+        else if(pitchBend <= 168){
+            pitchBend = 50;
+        }
+        else if(pitchBend <= 210){
+            pitchBend = 40;
+        }
+        else{
+            pitchBend = 35;
+        }
 
-            channels[1].setPitchBend(pitchBend); //setting the pitch bend based on y position of shape
-            channels[1].setPolyPressure(65,127); //testing duration, but doesn't seem to be doing anything
+        //play the note
+        myOrchestra.selectChannel(8);
+        myOrchestra.playNote(8, pitchBend, volume, duration);
 
-            //play the note
-            channels[1].noteOn(65, intVolume);
-
-            //channels[7].noteOff(65);
-
-
-             System.err.println("volume = " + intVolume);
-            //System.err.println("Pitch bend 1: " + channels[1].getPitchBend() );
-
-                //channels[2].noteOn(64, 127);
-
-
-//                double gain = 0.9D;
-//                for (int i=0; i<channels.length; i++) {
-//                    channels[i].controlChange(7, 1);
-//                    channels[i].setPitchBend(0);
-//                    System.err.println("controller " + i  + ": " + channels[i].getController(7));
-//                    System.err.println("pitch bend " + i  + ": " + channels[i].getPitchBend());
-//                }
-                //synth.close();
-
-               // sequencer.start();
-               //synth.close();
-
-            }
-    catch (MidiUnavailableException e){
-    }
-
+        //for debugging
+        System.err.println("width = " + r.width);
+        System.err.println("pitchbend = " + pitchBend);
+        System.err.println("height " + r.height);
+        System.err.println("volume = " + volume);
     }
 
 
