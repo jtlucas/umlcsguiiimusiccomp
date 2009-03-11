@@ -13,6 +13,11 @@ package edu.uml.cs.GUIProgramming.MusicComp;
 import edu.uml.cs.GUIProgramming.heines.*;
 import edu.uml.cs.GUIProgramming.jjmccaul.*;
 import edu.uml.cs.GUIProgramming.jtlucas.*;
+//import edu.uml.cs.GUIProgramming.jstarman.*; //for some reason this will not do the trick.
+import edu.uml.cs.GUIProgramming.jstarman.EllipseSizer; //had to import each one individually.
+import edu.uml.cs.GUIProgramming.jstarman.Resizing;
+import edu.uml.cs.GUIProgramming.jstarman.TriangleSizer;
+
 
 /**
  * This is the main driver for the entire music composition program.
@@ -53,7 +58,13 @@ public class Main extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
+    jButton1 = new javax.swing.JButton();
     btnExit = new javax.swing.JButton();
+    jerronEllipseBtn = new javax.swing.JButton();
+    jerronRectBtn = new javax.swing.JButton();
+    jerronTriBtn = new javax.swing.JButton();
+
+    jButton1.setText("jButton1");
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("UMass Lowell GUI Programming Music Composition");
@@ -70,6 +81,27 @@ public class Main extends javax.swing.JFrame {
       }
     });
 
+    jerronEllipseBtn.setText("Jerron's Ellipse");
+    jerronEllipseBtn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jerronEllipseBtnActionPerformed(evt);
+      }
+    });
+
+    jerronRectBtn.setText("Jerron's Rectangle");
+    jerronRectBtn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jerronRectBtnActionPerformed(evt);
+      }
+    });
+
+    jerronTriBtn.setText("Jerron's Triangle");
+    jerronTriBtn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jerronTriBtnActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -78,11 +110,29 @@ public class Main extends javax.swing.JFrame {
         .addContainerGap(339, Short.MAX_VALUE)
         .addComponent(btnExit)
         .addContainerGap())
+      .addGroup(layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jerronEllipseBtn)
+        .addContainerGap(287, Short.MAX_VALUE))
+      .addGroup(layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jerronRectBtn)
+        .addContainerGap(269, Short.MAX_VALUE))
+      .addGroup(layout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(jerronTriBtn)
+        .addContainerGap(279, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap(266, Short.MAX_VALUE)
+        .addContainerGap()
+        .addComponent(jerronEllipseBtn)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jerronRectBtn)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jerronTriBtn)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
         .addComponent(btnExit)
         .addContainerGap())
     );
@@ -111,6 +161,36 @@ public class Main extends javax.swing.JFrame {
   }//GEN-LAST:event_btnExitActionPerformed
 
   /**
+   * Button for Ellipse Application.
+   * @param evt launch's Jerron's Ellipse sound playing application
+   */
+  private void jerronEllipseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jerronEllipseBtnActionPerformed
+    EllipseSizer ellipse = new EllipseSizer(); //create EllipseSizer Object
+    String[] args = new String[2]; //probably more logical way around this but it works
+    ellipse.main(args); //run main from the EllipseSizer class.
+}//GEN-LAST:event_jerronEllipseBtnActionPerformed
+
+   /**
+   * Button for Triangle Application.
+   * @param evt launch's Jerron's Triangle sound playing application
+   */
+  private void jerronTriBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jerronTriBtnActionPerformed
+    TriangleSizer triangle = new TriangleSizer(); //create TrianglerSizer object
+    String[] args = new String[2];
+    triangle.main(args);
+  }//GEN-LAST:event_jerronTriBtnActionPerformed
+
+   /**
+   * Button for Rectangle Application.
+   * @param evt launch's Jerron's Rectangle sound playing application
+   */
+  private void jerronRectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jerronRectBtnActionPerformed
+    Resizing rect = new Resizing(); //create Resizing object
+    String[] args = new String[2];
+    rect.main(args);
+  }//GEN-LAST:event_jerronRectBtnActionPerformed
+
+  /**
    * This is the public version of the private NetBeans-generated btnExitActionPerformed
    * that can be called from other classes.
    */
@@ -134,5 +214,9 @@ public class Main extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   /** Exit button on the main window */
   private javax.swing.JButton btnExit;
+  private javax.swing.JButton jButton1;
+  private javax.swing.JButton jerronEllipseBtn;
+  private javax.swing.JButton jerronRectBtn;
+  private javax.swing.JButton jerronTriBtn;
   // End of variables declaration//GEN-END:variables
 }
