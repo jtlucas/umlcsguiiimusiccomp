@@ -66,6 +66,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.setRollover(true);
 
         InstrumentButtons.add(jb_Piano);
+        jb_Piano.setText("Piano");
         jb_Piano.setFocusable(false);
         jb_Piano.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_Piano.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -77,6 +78,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_Piano);
 
         InstrumentButtons.add(jb_Clavinet);
+        jb_Clavinet.setText("Clavinet");
         jb_Clavinet.setFocusable(false);
         jb_Clavinet.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_Clavinet.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -88,6 +90,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_Clavinet);
 
         InstrumentButtons.add(jb_NylonGuitar);
+        jb_NylonGuitar.setText("Nylon Guitar");
         jb_NylonGuitar.setFocusable(false);
         jb_NylonGuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_NylonGuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -99,6 +102,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_NylonGuitar);
 
         InstrumentButtons.add(jb_OverdrivenGuitar);
+        jb_OverdrivenGuitar.setText("Overdriven Guitar");
         jb_OverdrivenGuitar.setFocusable(false);
         jb_OverdrivenGuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_OverdrivenGuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -110,6 +114,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_OverdrivenGuitar);
 
         InstrumentButtons.add(jb_AcousticBass);
+        jb_AcousticBass.setText("Acoustic Bass");
         jb_AcousticBass.setFocusable(false);
         jb_AcousticBass.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_AcousticBass.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -121,6 +126,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_AcousticBass);
 
         InstrumentButtons.add(jb_Violin);
+        jb_Violin.setText("Violin");
         jb_Violin.setFocusable(false);
         jb_Violin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_Violin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -132,6 +138,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_Violin);
 
         InstrumentButtons.add(jb_StringEnsemble);
+        jb_StringEnsemble.setText("String Ensemble");
         jb_StringEnsemble.setFocusable(false);
         jb_StringEnsemble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_StringEnsemble.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -143,6 +150,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_StringEnsemble);
 
         InstrumentButtons.add(jb_Choir);
+        jb_Choir.setText("Choir");
         jb_Choir.setFocusable(false);
         jb_Choir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_Choir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -154,6 +162,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_Choir);
 
         InstrumentButtons.add(jb_BrassEnsemble);
+        jb_BrassEnsemble.setText("Brass Ensemble");
         jb_BrassEnsemble.setFocusable(false);
         jb_BrassEnsemble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_BrassEnsemble.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -165,6 +174,7 @@ public class Main extends javax.swing.JFrame {
         jtb_InstrumentToolbar.add(jb_BrassEnsemble);
 
         InstrumentButtons.add(jb_Drumkit);
+        jb_Drumkit.setText("Drumkit");
         jb_Drumkit.setFocusable(false);
         jb_Drumkit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jb_Drumkit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -265,13 +275,13 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtb_InstrumentToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jtb_InstrumentToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jtb_InstrumentToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         pack();
