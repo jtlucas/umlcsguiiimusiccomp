@@ -30,22 +30,18 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="230" max="32767" attributes="0"/>
                       <Component id="btnExit" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jerronTriBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jerronRectBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jerronEllipseBtn" alignment="0" max="32767" attributes="1"/>
-                      </Group>
-                      <EmptySpace pref="253" max="32767" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jerronTriBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jerronRectBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jerronEllipseBtn" alignment="0" max="32767" attributes="1"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jbtnJTLRunMain" min="-2" pref="137" max="-2" attributes="0"/>
-                      <EmptySpace pref="253" max="32767" attributes="1"/>
-                  </Group>
+                  <Component id="jbtnJTLRunMain" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,7 +57,10 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jbtnJTLRunMain" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="111" max="32767" attributes="0"/>
-              <Component id="btnExit" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnExit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -112,6 +111,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jerronTriBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="James Run All"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JamesButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

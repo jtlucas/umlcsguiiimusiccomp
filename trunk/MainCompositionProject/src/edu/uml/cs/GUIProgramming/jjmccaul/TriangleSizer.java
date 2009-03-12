@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package MusicAppPack;
+package edu.uml.cs.GUIProgramming.jjmccaul;
 
 
 import java.awt.*;
@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  *
- * @author James
+ * @author James McCauley with credit to "hardwired" for original square design
  */
 public class TriangleSizer extends JPanel{
     Point p1 = new Point(150,150);
@@ -116,118 +116,20 @@ class TriangleSize extends MouseAdapter {
 
     public void mouseMoved(MouseEvent e) {
         Point p = e.getPoint();
-//        if(!isOverRect(p)) {
-//            if(component.getCursor() != Cursor.getDefaultCursor()) {
-//                // If cursor is not over rect reset it to the default.
-//                component.setCursor(Cursor.getDefaultCursor());
-//            }
-//            return;
-//        }
-//        Point loc = e.getLocationOnScreen();
-//        if(component.triangle.contains(e.getLocationOnScreen())){
-//            System.out.println(loc);
-//        }
         
         // Locate cursor relative to center of rect.
-//        int outcode = getOutcode(p);
-//        Rectangle r = component.rect;
         Polygon tri = component.triangle;
-        if((Math.abs(e.getX()-tri.xpoints[2])) < PROX_DIST){
-            if(Math.abs(e.getY()-tri.ypoints[2])< PROX_DIST){
+        if((Math.abs(e.getX()-tri.xpoints[2])) < PROX_DIST  && Math.abs(e.getY()-tri.ypoints[2])< PROX_DIST){
                 component.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
-            }
         }
-        else if((Math.abs(e.getX()-tri.xpoints[1])) < PROX_DIST){
-            if(Math.abs(e.getY()-tri.ypoints[1])< PROX_DIST){
+        else if((Math.abs(e.getX()-tri.xpoints[1])) < PROX_DIST && Math.abs(e.getY()-tri.ypoints[1])< PROX_DIST){
                 component.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
-            }
         }
-        else if((Math.abs(e.getX()-tri.xpoints[0])) < PROX_DIST){
-            if(Math.abs(e.getY()-tri.ypoints[0])< PROX_DIST){
+        else if((Math.abs(e.getX()-tri.xpoints[0])) < PROX_DIST && Math.abs(e.getY()-tri.ypoints[0])< PROX_DIST){
                 component.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
-            }
         }
         else{
              component.setCursor(Cursor.getDefaultCursor());
         }
-
-
-
-//        switch(outcode) {
-//            case Rectangle.OUT_TOP:
-//                if(Math.abs(p.y - r.y) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.N_RESIZE_CURSOR));
-//                }
-//                break;
-//             case Rectangle.OUT_TOP + Rectangle.OUT_LEFT:
-//                if(Math.abs(p.y - r.y) < PROX_DIST &&
-//                   Math.abs(p.x - r.x) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.NW_RESIZE_CURSOR));
-//                }
-//                break;
-//            case Rectangle.OUT_LEFT:
-//                if(Math.abs(p.x - r.x) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.W_RESIZE_CURSOR));
-//                }
-//                break;
-//            case Rectangle.OUT_LEFT + Rectangle.OUT_BOTTOM:
-//                if(Math.abs(p.x - r.x) < PROX_DIST &&
-//                   Math.abs(p.y - (r.y+r.height)) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.SW_RESIZE_CURSOR));
-//                }
-//                break;
-//            case Rectangle.OUT_BOTTOM:
-//                if(Math.abs(p.y - (r.y+r.height)) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.S_RESIZE_CURSOR));
-//                }
-//                break;
-//            case Rectangle.OUT_BOTTOM + Rectangle.OUT_RIGHT:
-//                if(Math.abs(p.x - (r.x+r.width)) < PROX_DIST &&
-//                   Math.abs(p.y - (r.y+r.height)) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.SE_RESIZE_CURSOR));
-//                }
-//                break;
-//            case Rectangle.OUT_RIGHT:
-//                if(Math.abs(p.x - (r.x+r.width)) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.E_RESIZE_CURSOR));
-//                }
-//                break;
-//            case Rectangle.OUT_RIGHT + Rectangle.OUT_TOP:
-//                if(Math.abs(p.x - (r.x+r.width)) < PROX_DIST &&
-//                   Math.abs(p.y - r.y) < PROX_DIST) {
-//                    component.setCursor(Cursor.getPredefinedCursor(
-//                                        Cursor.NE_RESIZE_CURSOR));
-//                }
-//                break;
-//            default:    // center
-//                component.setCursor(Cursor.getDefaultCursor());
-        }
-//    }
-
-    /**
-     * Make a smaller Rectangle and use it to locate the
-     * cursor relative to the Rectangle center.
-     */
-//    private int getOutcode(Point p) {
-//        Rectangle r = (Rectangle)component.rect.clone();
-//        r.grow(-PROX_DIST, -PROX_DIST);
-//        return r.outcode(p.x, p.y);
-//    }
-
-     /**
-     * Make a larger Rectangle and check to see if the
-     * cursor is over it.
-     */
-//    private boolean isOverRect(Point p) {
-//        Rectangle r = (Rectangle)component.rect.clone();
-//        r.grow(PROX_DIST, PROX_DIST);
-//        return r.contains(p);
-//    }
+    }
 }

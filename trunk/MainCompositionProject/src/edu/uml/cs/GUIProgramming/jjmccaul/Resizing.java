@@ -3,11 +3,12 @@
  * and open the template in the editor.
  */
 
-package MusicAppPack;
+package edu.uml.cs.GUIProgramming.jjmccaul;
 
 /**
  *
- * @author James
+ * @author James McCauley
+ * Original project created by "hardwired" taken and added to for purposes of our class project
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -57,6 +58,7 @@ class Resizer extends MouseAdapter {
     }
 
     public void mousePressed(MouseEvent e) {
+//        Rectangle r = component.rect;
         if(component.getCursor() != Cursor.getDefaultCursor()) {
             // If cursor is set for resizing, allow dragging.
             dragging = true;
