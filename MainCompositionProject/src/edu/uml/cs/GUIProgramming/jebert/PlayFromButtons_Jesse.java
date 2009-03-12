@@ -334,7 +334,7 @@ public class PlayFromButtons_Jesse extends javax.swing.JFrame {
     // TODO add your handling code here:
     jpbSequence.setValue( 0 ) ;
     nSequenceToPlay = 1 ;   // 1 = vecStoredSequence
-    PlaySequence thread = new PlaySequence( this, vecStoredSequence ) ;
+    PlaySequence_Jesse thread = new PlaySequence_Jesse( this, vecStoredSequence ) ;
     thread.start() ;
   }//GEN-LAST:event_jbtnPlayStoredActionPerformed
 
@@ -386,7 +386,7 @@ public class PlayFromButtons_Jesse extends javax.swing.JFrame {
     // play the created sequence of WAV files
     jpbSequence.setValue( 0 ) ;
     nSequenceToPlay = 2 ;   // 2 = vecAllNumbersSequence
-    PlaySequence thread = new PlaySequence( this, vecAllNumbersSequence ) ;
+    PlaySequence_Jesse thread = new PlaySequence_Jesse( this, vecAllNumbersSequence ) ;
     thread.start() ;
 }//GEN-LAST:event_jbtnPlayAllActionPerformed
 
@@ -491,7 +491,7 @@ public class PlayFromButtons_Jesse extends javax.swing.JFrame {
  * @author <a href="mailto:heines@cs.uml.edu">heines@cs.uml.edu</a>
  * @version 1.0, 2008-04-29, April 29, 2008
  */
-class PlaySequence extends Thread {
+class PlaySequence_Jesse extends Thread {
 
   /**
    * the main application with the GUI thread
@@ -507,7 +507,7 @@ class PlaySequence extends Thread {
    * constructor
    * @param vecSequence required sequence of WAV file paths to play
    */
-  public PlaySequence( PlayFromButtons_Jesse theApp, Vector<String> vecSequence ) {
+  public PlaySequence_Jesse( PlayFromButtons_Jesse theApp, Vector<String> vecSequence ) {
     this.theApp = theApp ;
     this.vecSequence = vecSequence;
   }
