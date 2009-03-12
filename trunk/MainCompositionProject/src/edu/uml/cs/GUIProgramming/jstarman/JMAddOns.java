@@ -88,7 +88,7 @@ public class JMAddOns extends JPanel {
 
     boolean moving = false;
 
-    public void inRect(Resizing c, java.awt.event.MouseEvent me){
+    public void inRect(Resizing_Jer c, java.awt.event.MouseEvent me){
         Rectangle re = c.rect;
         if(re.contains(me.getPoint())){
             moving = true;
@@ -98,7 +98,7 @@ public class JMAddOns extends JPanel {
         }
     }
 
-    public void inTri(TriangleSizer ts, java.awt.event.MouseEvent me){
+    public void inTri(TriangleSizer_Jer ts, java.awt.event.MouseEvent me){
         Polygon tri = ts.triangle;
         if(tri.contains(me.getPoint())){
             moving = true;
@@ -109,7 +109,7 @@ public class JMAddOns extends JPanel {
         System.out.println(moving);
     
     }
-        public void inCirc(EllipseSizer es, java.awt.event.MouseEvent me){
+        public void inCirc(EllipseSizer_Jer es, java.awt.event.MouseEvent me){
         Ellipse2D ell2d = es.el;
         if(ell2d.contains(me.getPoint())){
             moving = true;
@@ -119,9 +119,9 @@ public class JMAddOns extends JPanel {
         }
     }
 
-       public void moveCirc(EllipseSizer es, java.awt.event.MouseEvent me){
+       public void moveCirc(EllipseSizer_Jer es, java.awt.event.MouseEvent me){
         if(moving == true){
-            EllipseSizer component = es;
+            EllipseSizer_Jer component = es;
             Point p = me.getPoint();
             Ellipse2D ell2d = component.el;
             Rectangle re = ell2d.getBounds();
@@ -133,9 +133,9 @@ public class JMAddOns extends JPanel {
         }
     }
 
-    public void moveRect(Resizing rs, java.awt.event.MouseEvent me){
+    public void moveRect(Resizing_Jer rs, java.awt.event.MouseEvent me){
         if(moving == true){
-            Resizing component = rs;
+            Resizing_Jer component = rs;
             Point p = me.getPoint();
             Rectangle re = component.rect;
             int dx = p.x - re.x;
@@ -145,9 +145,9 @@ public class JMAddOns extends JPanel {
         }
     }
 
-    public void moveTri(TriangleSizer ts, java.awt.event.MouseEvent me){
+    public void moveTri(TriangleSizer_Jer ts, java.awt.event.MouseEvent me){
         if(moving == true){
-            TriangleSizer component = ts;
+            TriangleSizer_Jer component = ts;
             Point p = me.getPoint();
             Polygon triangle = component.triangle;
             int dx = p.x - triangle.xpoints[0];
