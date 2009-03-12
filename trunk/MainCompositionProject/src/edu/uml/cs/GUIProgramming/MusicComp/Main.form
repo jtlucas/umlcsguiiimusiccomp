@@ -39,7 +39,11 @@
                       <Component id="jerronRectBtn" alignment="0" max="32767" attributes="0"/>
                       <Component id="jerronEllipseBtn" alignment="0" max="32767" attributes="1"/>
                   </Group>
-                  <Component id="jbtnJTLRunMain" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jbtnJebertProg" alignment="0" max="32767" attributes="1"/>
+                      <Component id="jbtnJebertScroll" alignment="0" max="32767" attributes="1"/>
+                      <Component id="jbtnJTLRunMain" alignment="0" pref="137" max="32767" attributes="1"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -56,7 +60,11 @@
               <Component id="jerronTriBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="jbtnJTLRunMain" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="111" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jbtnJebertScroll" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jbtnJebertProg" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnExit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -119,6 +127,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JamesButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbtnJebertScroll">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jebert Scroll"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnJebertScrollActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbtnJebertProg">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jebert Progress Bar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnJebertProgActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
