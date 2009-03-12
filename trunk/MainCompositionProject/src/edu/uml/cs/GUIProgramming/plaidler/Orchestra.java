@@ -93,13 +93,19 @@ public class Orchestra {
       int duration; /** Duration milliseconds */
 
       playMidiNote(int channel, int pitch, int velocity, int duration) {
+          if( channel > 16 ){ channel = 16; }   //Max channel
+          if( channel < 0 ){ channel = 0; }     //Min channel
           this.channel = channel;
 
           if( pitch > 127 ){ pitch = 127; } //Max pitch
           if( pitch < 0 ){ pitch = 0; }     //Min pitch
           this.pitch = pitch;
 
+          if( velocity > 127 ){ velocity = 127; } //Max Velocity
+          if( velocity < 0 ){ velocity = 0; }     //Min Velocity
           this.velocity = velocity;
+
+          if( duration < 0 ){ duration = 0; } //Min Duration
           this.duration = duration;
       }
       public void run() {
