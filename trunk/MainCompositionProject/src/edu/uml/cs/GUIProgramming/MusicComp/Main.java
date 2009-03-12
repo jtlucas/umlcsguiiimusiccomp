@@ -13,10 +13,10 @@ package edu.uml.cs.GUIProgramming.MusicComp;
 import edu.uml.cs.GUIProgramming.heines.*;
 import edu.uml.cs.GUIProgramming.jjmccaul.*;
 import edu.uml.cs.GUIProgramming.jtlucas.*;
-//import edu.uml.cs.GUIProgramming.jstarman.*; //for some reason this will not do the trick.
-import edu.uml.cs.GUIProgramming.jstarman.EllipseSizer; //had to import each one individually.
-import edu.uml.cs.GUIProgramming.jstarman.Resizing;
-import edu.uml.cs.GUIProgramming.jstarman.TriangleSizer;
+import edu.uml.cs.GUIProgramming.jstarman.*; //for some reason this will not do the trick.
+//import edu.uml.cs.GUIProgramming.jstarman.EllipseSizer_Jer; //had to import each one individually.
+//import edu.uml.cs.GUIProgramming.jstarman.Resizing_Jer;
+//import edu.uml.cs.GUIProgramming.jstarman.TriangleSizer_Jer;
 import edu.uml.cs.GUIProgramming.jebert.*;
 import edu.uml.cs.GUIProgramming.plaidler.*;
 import edu.uml.cs.GUIProgramming.etran.*;
@@ -230,7 +230,7 @@ public class Main extends javax.swing.JFrame {
    * @param evt launch's Jerron's Ellipse sound playing application
    */
   private void jerronEllipseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jerronEllipseBtnActionPerformed
-    EllipseSizer ellipse = new EllipseSizer(); //create EllipseSizer Object
+    EllipseSizer_Jer ellipse = new EllipseSizer_Jer(); //create EllipseSizer Object
     String[] args = new String[2]; //probably more logical way around this but it works
     ellipse.main(args); //run main from the EllipseSizer class.
 }//GEN-LAST:event_jerronEllipseBtnActionPerformed
@@ -240,7 +240,7 @@ public class Main extends javax.swing.JFrame {
    * @param evt launch's Jerron's Triangle sound playing application
    */
   private void jerronTriBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jerronTriBtnActionPerformed
-    TriangleSizer triangle = new TriangleSizer(); //create TrianglerSizer object
+    TriangleSizer_Jer triangle = new TriangleSizer_Jer(); //create TrianglerSizer object
     String[] args = new String[2];
     triangle.main(args);
   }//GEN-LAST:event_jerronTriBtnActionPerformed
@@ -250,7 +250,7 @@ public class Main extends javax.swing.JFrame {
    * @param evt launch's Jerron's Rectangle sound playing application
    */
   private void jerronRectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jerronRectBtnActionPerformed
-    Resizing rect = new Resizing(); //create Resizing object
+    Resizing_Jer rect = new Resizing_Jer(); //create Resizing object
     String[] args = new String[2];
     rect.main(args);
   }//GEN-LAST:event_jerronRectBtnActionPerformed
@@ -266,7 +266,10 @@ public class Main extends javax.swing.JFrame {
 
   private void JamesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JamesButtonActionPerformed
       // TODO add your handling code here:
-      Resizing.main(null);
+
+      //conflicts with Elizabeth's Resizing, I (Jerron) commented it out so it wouldn't
+      //break this main class and emailed James about this issue.
+      //Resizing.main(null);
       EllipseSizer.main(null);
       TriangleSizer.main(null);
 }//GEN-LAST:event_JamesButtonActionPerformed
