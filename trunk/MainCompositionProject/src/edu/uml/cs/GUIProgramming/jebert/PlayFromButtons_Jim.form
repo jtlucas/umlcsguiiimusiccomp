@@ -352,6 +352,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jbrProgress">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** shows the progress of the sequence */"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
