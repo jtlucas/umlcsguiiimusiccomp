@@ -258,7 +258,18 @@ public class JTL_WindowSize extends javax.swing.JFrame {
        jpanel.setMaximumSize(new java.awt.Dimension(JPanel_WidthSize, JPanel_HeightSize));
        jpanel.setPreferredSize(new java.awt.Dimension(JPanel_WidthSize, JPanel_HeightSize));
      }
-
+     
+    /**
+     * This method is intended to be called from other classes.
+     * This overrides the main function for when there are no arguements that are passed.
+     */
+     public static void main () {
+         // Create empty args that are requred by the default main
+         String[] args = new String[2];
+         // Call the default main with the empty args
+         main(args);
+     }
+     
      /**
      * @param args the command line arguments
      */
