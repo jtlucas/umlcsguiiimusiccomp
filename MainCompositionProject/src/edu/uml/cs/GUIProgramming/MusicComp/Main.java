@@ -64,6 +64,7 @@ public class Main extends javax.swing.JFrame {
     jerronEllipseBtn = new javax.swing.JButton();
     jerronRectBtn = new javax.swing.JButton();
     jerronTriBtn = new javax.swing.JButton();
+    jButton1 = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("UMass Lowell GUI Programming Music Composition");
@@ -108,6 +109,13 @@ public class Main extends javax.swing.JFrame {
       }
     });
 
+    jButton1.setText("James Run All");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        JamesButtonActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
@@ -116,17 +124,15 @@ public class Main extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(btnExit)
-            .addContainerGap())
-          .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-              .addComponent(jerronTriBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(jerronRectBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(jerronEllipseBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap(253, Short.MAX_VALUE))
-          .addGroup(layout.createSequentialGroup()
-            .addComponent(jbtnJTLRunMain, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(253, Short.MAX_VALUE))))
+            .addComponent(jButton1)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
+            .addComponent(btnExit))
+          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addComponent(jerronTriBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jerronRectBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jerronEllipseBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addComponent(jbtnJTLRunMain, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap())
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +146,9 @@ public class Main extends javax.swing.JFrame {
         .addGap(30, 30, 30)
         .addComponent(jbtnJTLRunMain)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-        .addComponent(btnExit)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnExit)
+          .addComponent(jButton1))
         .addContainerGap())
     );
 
@@ -206,6 +214,13 @@ public class Main extends javax.swing.JFrame {
     JTL_WindowSize.main();
   }//GEN-LAST:event_jbtnJTLRunMainActionPerformed
 
+  private void JamesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JamesButtonActionPerformed
+      // TODO add your handling code here:
+      Resizing.main(null);
+      EllipseSizer.main(null);
+      TriangleSizer.main(null);
+}//GEN-LAST:event_JamesButtonActionPerformed
+
   /**
    * This is the public version of the private NetBeans-generated btnExitActionPerformed
    * that can be called from other classes.
@@ -230,6 +245,7 @@ public class Main extends javax.swing.JFrame {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   /** Exit button on the main window */
   private javax.swing.JButton btnExit;
+  private javax.swing.JButton jButton1;
   /* This button will activate the main in the JTLucas Package */
   private javax.swing.JButton jbtnJTLRunMain;
   private javax.swing.JButton jerronEllipseBtn;

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package MusicAppPack;
+package edu.uml.cs.GUIProgramming.jjmccaul;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -13,7 +13,7 @@ import javax.swing.*;
 
 /**
  *
- * @author James
+ * @author James McCauley with credit to "hardwired" for the original square resizer design
  */
 public class EllipseSizer extends JPanel {
      Ellipse2D.Double el = new Ellipse2D.Double(50, 50, 200, 200);
@@ -23,7 +23,7 @@ public class EllipseSizer extends JPanel {
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                             RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setPaint(Color.blue);
+        g2.setPaint(Color.green);
         g2.draw(el);
     }
 
@@ -64,11 +64,13 @@ class EllipseResizer extends MouseAdapter {
             dragging = true;
         }
         else{
+            // If cursor is not set for resizing, check for moving.
             jmao.inCirc(component, e);
         }
     }
 
     public void mouseReleased(MouseEvent e) {
+        //set all checks for movement off
         dragging = false;
         jmao.inCirc(component, e);
     }
@@ -84,50 +86,38 @@ class EllipseResizer extends MouseAdapter {
              switch(type) {
                 case Cursor.N_RESIZE_CURSOR:
                     int height = r.height - dy;
-//                    r.setRect(r.x, r.y+dy, r.width, height);
                     ellip.setFrame(r.x, r.y+dy, r.width, height);
-//                    ellip.x = r.x;
-//                    ellip.y = r.y+dy;
-//                    ellip.width = r.width;
-//                    ellip.height = r.height - dy;
                     break;
                 case Cursor.NW_RESIZE_CURSOR:
                     int width = r.width - dx;
                     height = r.height - dy;
-//                    r.setRect(r.x+dx, r.y+dy, width, height);
                     ellip.setFrame(r.x+dx, r.y+dy, width, height);
                     break;
                 case Cursor.W_RESIZE_CURSOR:
                     width = r.width - dx;
-//                    r.setRect(r.x+dx, r.y, width, r.height);
                     ellip.setFrame(r.x+dx, r.y, width, r.height);
                     break;
                 case Cursor.SW_RESIZE_CURSOR:
                     width = r.width - dx;
                     height = dy;
-//                    r.setRect(r.x+dx, r.y, width, height);
                     ellip.setFrame(r.x+dx, r.y, width, height);
                     break;
                 case Cursor.S_RESIZE_CURSOR:
                     height = dy;
-//                    r.setRect(r.x, r.y, r.width, height);
                     ellip.setFrame(r.x, r.y, r.width, height);
                     break;
                 case Cursor.SE_RESIZE_CURSOR:
                     width = dx;
                     height = dy;
-//                    r.setRect(r.x, r.y, width, height);
                     ellip.setFrame(r.x, r.y, width, height);
                     break;
                 case Cursor.E_RESIZE_CURSOR:
                     width = dx;
-//                    r.setRect(r.x, r.y, width, r.height);
                     ellip.setFrame(r.x, r.y, width, r.height);
                     break;
                 case Cursor.NE_RESIZE_CURSOR:
                     width = dx;
                     height = r.height - dy;
-//                    r.setRect(r.x, r.y+dy, width, height);
                     ellip.setFrame(r.x, r.y+dy, width, height);
                     break;
                 default:
