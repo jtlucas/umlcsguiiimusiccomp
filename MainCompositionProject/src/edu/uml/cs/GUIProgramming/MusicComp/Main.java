@@ -18,7 +18,7 @@ import edu.uml.cs.GUIProgramming.jstarman.EllipseSizer; //had to import each one
 import edu.uml.cs.GUIProgramming.jstarman.Resizing;
 import edu.uml.cs.GUIProgramming.jstarman.TriangleSizer;
 import edu.uml.cs.GUIProgramming.jebert.*;
-
+import edu.uml.cs.GUIProgramming.plaidler.*;
 
 
 /**
@@ -68,6 +68,7 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jbtnJebertScroll = new javax.swing.JButton();
         jbtnJebertProg = new javax.swing.JButton();
+        jbtnPaulOrch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("UMass Lowell GUI Programming Music Composition");
@@ -133,6 +134,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jbtnPaulOrch.setText("Paul's Instrument Select");
+        jbtnPaulOrch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPaulOrchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,10 +152,13 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                         .addComponent(btnExit))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jerronTriBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jerronRectBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jerronEllipseBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jerronTriBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jerronRectBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jerronEllipseBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnPaulOrch))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jbtnJebertProg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbtnJebertScroll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,7 +169,9 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jerronEllipseBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jerronEllipseBtn)
+                    .addComponent(jbtnPaulOrch))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jerronRectBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -169,7 +182,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jbtnJebertScroll)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnJebertProg)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit)
                     .addComponent(jButton1))
@@ -262,6 +275,15 @@ public class Main extends javax.swing.JFrame {
   }//GEN-LAST:event_jbtnJebertProgActionPerformed
 
   /**
+   * Starts paul's instrument selection demo
+   * @param evt
+   */
+  private void jbtnPaulOrchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPaulOrchActionPerformed
+      // TODO add your handling code here:
+      OrchestraStub.main(null);
+}//GEN-LAST:event_jbtnPaulOrchActionPerformed
+
+  /**
    * This is the public version of the private NetBeans-generated btnExitActionPerformed
    * that can be called from other classes.
    */
@@ -290,6 +312,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jbtnJTLRunMain;
     private javax.swing.JButton jbtnJebertProg;
     private javax.swing.JButton jbtnJebertScroll;
+    private javax.swing.JButton jbtnPaulOrch;
     private javax.swing.JButton jerronEllipseBtn;
     private javax.swing.JButton jerronRectBtn;
     private javax.swing.JButton jerronTriBtn;
