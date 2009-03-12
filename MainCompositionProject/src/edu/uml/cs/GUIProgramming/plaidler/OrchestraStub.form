@@ -8,7 +8,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jm_OldInstrumentMenu">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Instrument"/>
+            <Property name="text" type="java.lang.String" value="Instrument Menu"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Piano">
@@ -98,6 +98,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Instrument Select"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jmb_MainMenuBar"/>

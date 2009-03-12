@@ -95,7 +95,8 @@ public class Orchestra {
       playMidiNote(int channel, int pitch, int velocity, int duration) {
           this.channel = channel;
 
-          if( pitch > 127 ){ pitch = 127; }
+          if( pitch > 127 ){ pitch = 127; } //Max pitch
+          if( pitch < 0 ){ pitch = 0; }     //Min pitch
           this.pitch = pitch;
 
           this.velocity = velocity;

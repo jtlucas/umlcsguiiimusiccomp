@@ -61,6 +61,7 @@ public class OrchestraStub extends javax.swing.JFrame {
         jmi_Drumkit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Instrument Select");
 
         jtb_InstrumentToolbar.setFloatable(false);
         jtb_InstrumentToolbar.setRollover(true);
@@ -185,7 +186,7 @@ public class OrchestraStub extends javax.swing.JFrame {
         });
         jtb_InstrumentToolbar.add(jb_Drumkit);
 
-        jm_OldInstrumentMenu.setText("Instrument");
+        jm_OldInstrumentMenu.setText("Instrument Menu");
 
         jmi_Piano.setText("Piano");
         jmi_Piano.addActionListener(new java.awt.event.ActionListener() {
