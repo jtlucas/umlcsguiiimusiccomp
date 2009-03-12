@@ -17,7 +17,7 @@ import javax.swing.*;
 /**
  * This class contains the code to generate the application window sizes.
  * @author Jesse T. Lucas, UMass Lowell Computer Science
- * @author <a href="mailto:jtlucas@cs.uml.edu">heines@cs.uml.edu</a>
+ * @author <a href="mailto:jtlucas@cs.uml.edu">jtlucas@cs.uml.edu</a>
  * @version 1.0, March 3, 2009
  * Copyright &copy; 2009 by Jesse T. Lucas.  All rights reserved.  May be freely
  *     copied or excerpted for educational purposes with credit to the author.
@@ -29,6 +29,19 @@ public class JTL_WindowSize extends javax.swing.JFrame {
 
     /** The main application for reference within this class. */
     Main mainApp = null;
+    
+    /* The Default Window Width Size */
+    private int Window_WidthSize = 800;
+    /* The Default Window Height Size */
+    private int Window_HeightSize = 700;
+    /* The Default Panel Width Size */
+    private int JPanel_WidthSize = 3000;
+    /* The Default Panel Height Size */
+    private int JPanel_HeightSize = 508;
+    /* The Default JScrollPane Width Size */
+    private int JScroll_WidthSize = 780;
+    /* The Default JScrollPane Height Size */
+    private int JScroll_HeightSize = 508;
 
     /** Creates new form JTL_WindowSize */
     public JTL_WindowSize() {
@@ -97,14 +110,128 @@ public class JTL_WindowSize extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method is intended to be called from other classes.
+     * This is to get the Window_WidthSize
+     * @return int returns the Window_WidthSize
+     */
+    public int getWindow_WidthSize(){
+        return Window_WidthSize;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to set the Window_WidthSize
+     * @param value sets the Window_WidthSize
+     */
+    public void setWindow_WidthSize( int value ){
+        Window_WidthSize = value;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to get the Window_HeightSize
+     * @return int returns the Window_HeightSize
+     */
+    public int getWindow_HeightSize(){
+        return Window_HeightSize;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to set the Window_HeightSize
+     * @param value sets the Window_HeightSize
+     */
+    public void setWindow_HeightSize( int value ){
+        Window_HeightSize = value;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to get the JPanel_WidthSize
+     * @return int returns the JPanel_WidthSize
+     */
+    public int getJPanel_WidthSize(){
+        return JPanel_WidthSize;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to set the JPanel_WidthSize
+     * @param value sets the JPanel_WidthSize
+     */
+    public void setJPanel_WidthSize( int value ){
+        JPanel_WidthSize = value;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to get the JPanel_HeightSize
+     * @return int returns the JPanel_HeightSize
+     */
+    public int getJPanel_HeightSize(){
+        return JPanel_HeightSize;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to set the JPanel_HeightSize
+     * @param value sets the JPanel_HeightSize
+     */
+    public void setJPanel_HeightSize( int value ){
+        JPanel_HeightSize = value;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to get the JScroll_WidthSize
+     * @return int returns the JScroll_WidthSize
+     */
+    public int getJScroll_WidthSize(){
+        return JScroll_WidthSize;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to set the JScroll_WidthSize
+     * @param value sets the JScroll_WidthSize
+     */
+    public void setJScroll_WidthSize( int value ){
+        JScroll_WidthSize = value;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to get the JScroll_HeightSize
+     * @return int returns the JScroll_HeightSize
+     */
+    public int getJScroll_HeightSize(){
+        return JScroll_HeightSize;
+    }
+
+    /**
+     * This method is intended to be called from other classes.
+     * This is to set the JScroll_HeightSize
+     * @param value sets the JScroll_HeightSize
+     */
+    public void setJScroll_HeightSize( int value ){
+        JScroll_HeightSize = value;
+    }
+    
+
+
+
+
+
+
      /**
      * This method is intended to be called from other classes.
      * To set the window sizes to those that were chosen by Jesse L.
      * @param jfrm
      */
      public void setWindowSize( JFrame jfrm ) {
-       jfrm.setMinimumSize(new java.awt.Dimension(800, 700));
-       jfrm.setPreferredSize(new java.awt.Dimension(800, 700));
+       jfrm.setMinimumSize(new java.awt.Dimension(Window_WidthSize, Window_HeightSize));
+       jfrm.setPreferredSize(new java.awt.Dimension(Window_WidthSize, Window_HeightSize));
      }
 
      /**
@@ -114,10 +241,11 @@ public class JTL_WindowSize extends javax.swing.JFrame {
      */
      public void setScrollPaneSize( JScrollPane jspane ) {
        //Set all jscroll pane sizes to be Width = 780, Height = 530.
-       jspane.setMinimumSize(new java.awt.Dimension(780, 530));
-       jspane.setMaximumSize(new java.awt.Dimension(780, 530));
-       jspane.setPreferredSize(new java.awt.Dimension(780, 530));
+       jspane.setMinimumSize(new java.awt.Dimension(JScroll_WidthSize, JScroll_HeightSize));
+       jspane.setMaximumSize(new java.awt.Dimension(JScroll_WidthSize, JScroll_HeightSize));
+       jspane.setPreferredSize(new java.awt.Dimension(JScroll_WidthSize, JScroll_HeightSize));
      }
+
 
      /**
      * This method is intended to be called from other classes.
@@ -126,9 +254,9 @@ public class JTL_WindowSize extends javax.swing.JFrame {
      */
      public void setPanelSize( JPanel jpanel ) {
        //Set all jpanel sizes to be Width = 3000, Height = 508.
-       jpanel.setMinimumSize(new java.awt.Dimension(3000, 508));
-       jpanel.setMaximumSize(new java.awt.Dimension(3000, 508));
-       jpanel.setPreferredSize(new java.awt.Dimension(3000, 508));
+       jpanel.setMinimumSize(new java.awt.Dimension(JPanel_WidthSize, JPanel_HeightSize));
+       jpanel.setMaximumSize(new java.awt.Dimension(JPanel_WidthSize, JPanel_HeightSize));
+       jpanel.setPreferredSize(new java.awt.Dimension(JPanel_WidthSize, JPanel_HeightSize));
      }
 
      /**

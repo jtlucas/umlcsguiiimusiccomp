@@ -14,7 +14,7 @@ package edu.uml.cs.GUIProgramming.jtlucas;
 /**
  * This class contains the code to generate the shape sizes.
  * @author Jesse T. Lucas, UMass Lowell Computer Science
- * @author <a href="mailto:jtlucas@cs.uml.edu">heines@cs.uml.edu</a>
+ * @author <a href="mailto:jtlucas@cs.uml.edu">jtlucas@cs.uml.edu</a>
  * @version 1.0, March 3, 2009
  * Copyright &copy; 2009 by Jesse T. Lucas.  All rights reserved.  May be freely
  *     copied or excerpted for educational purposes with credit to the author.
@@ -22,74 +22,74 @@ package edu.uml.cs.GUIProgramming.jtlucas;
 public class JTL_ShapeSize {
 
     /* The Max Height of a Shape */
-    private int ShapeMaxHeight = 254;
+    private double ShapeMaxHeight = 254;
     /* The Min Height of a Shape */
-    private int ShapeMinHeight = 10;
+    private double ShapeMinHeight = 10;
     /* The Max Width of a Shape */
-    private int ShapeMaxWidth = 2990;
+    private double ShapeMaxWidth = 2990;
     /* The Min Width of a Shape */
-    private int ShapeMinWidth = 10;
+    private double ShapeMinWidth = 10;
 
     /**
      * This method is intended to be called from other classes.
      * This is to return the max height of a shape.
-     * @return int that corresponds to the maximum height
+     * @return double that corresponds to the maximum height
      */
-     public int getShapeMaxHeight() {
+     public double getShapeMaxHeight() {
          return (ShapeMaxHeight);
      }
 
      /**
      * This method is intended to be called from other classes.
      * This is to set the max height of a shape.
-     * @param value int that sets the maximum height
+     * @param value double that sets the maximum height
      */
-     public void setShapeMaxHeight(int value) {
+     public void setShapeMaxHeight(double value) {
          ShapeMaxHeight = value;
      }
 
      /**
      * This method is intended to be called from other classes.
      * This is to return the min height of a shape.
-     * @return int that corresponds to the minimum height
+     * @return double that corresponds to the minimum height
      */
-     public int getShapeMinHeight() {
+     public double getShapeMinHeight() {
          return (ShapeMinHeight);
      }
 
      /**
      * This method is intended to be called from other classes.
      * This is to set the min height of a shape.
-     * @param value int that sets the minimum height
+     * @param value double that sets the minimum height
      */
-     public void setShapeMinHeight(int value) {
+     public void setShapeMinHeight(double value) {
          ShapeMinHeight = value;
      }
 
      /**
      * This method is intended to be called from other classes.
      * This is to return the min width of a shape.
-     * @return int that corresponds to the minimum width
+     * @return double that corresponds to the minimum width
      */
-     public int getShapeMinWidth() {
+     public double getShapeMinWidth() {
          return (ShapeMinWidth);
      }
 
      /**
      * This method is intended to be called from other classes.
      * This is set the min width of a shape.
-     * @param value int sets the minimum width
+     * @param value double sets the minimum width
      */
-     public void setShapeMinWidth( int value ) {
+     public void setShapeMinWidth( double value ) {
          ShapeMinWidth = value;
      }
 
      /**
      * This method is intended to be called from other classes.
      * This is to return the max width of a shape.
-     * @return int that corresponds to the maximum width
+     * @return double that corresponds to the maximum width
      */
-     public int getShapeMaxWidth() {
+     public double getShapeMaxWidth() {
          return (ShapeMaxWidth);
      }
 
@@ -98,10 +98,8 @@ public class JTL_ShapeSize {
      * This is to set the max width of a shape.
      * @param value sets the maximum width
      */
-     public void setShapeMaxWidth( int value ) {
+     public void setShapeMaxWidth( double value ) {
          ShapeMaxWidth = value;
      }
-
-
 
 }
