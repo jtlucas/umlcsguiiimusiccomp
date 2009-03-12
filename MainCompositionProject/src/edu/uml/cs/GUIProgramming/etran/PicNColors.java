@@ -165,7 +165,7 @@ public class PicNColors extends javax.swing.JFrame {
 //      if ( mainApp != null ) {
 //        mainApp.btnExitActionPerformed();   // note call to method in Main class
 //      } else {
-//        System.exit( 0 );
+        System.exit( 0 );
 //      }
     }//GEN-LAST:event_jExitButtonActionPerformed
 
