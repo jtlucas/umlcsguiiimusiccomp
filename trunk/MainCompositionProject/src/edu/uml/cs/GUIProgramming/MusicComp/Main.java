@@ -13,10 +13,7 @@ package edu.uml.cs.GUIProgramming.MusicComp;
 import edu.uml.cs.GUIProgramming.heines.*;
 import edu.uml.cs.GUIProgramming.jjmccaul.*;
 import edu.uml.cs.GUIProgramming.jtlucas.*;
-import edu.uml.cs.GUIProgramming.jstarman.*; //for some reason this will not do the trick.
-//import edu.uml.cs.GUIProgramming.jstarman.EllipseSizer_Jer; //had to import each one individually.
-//import edu.uml.cs.GUIProgramming.jstarman.Resizing_Jer;
-//import edu.uml.cs.GUIProgramming.jstarman.TriangleSizer_Jer;
+import edu.uml.cs.GUIProgramming.jstarman.*; 
 import edu.uml.cs.GUIProgramming.jebert.*;
 import edu.uml.cs.GUIProgramming.plaidler.*;
 import edu.uml.cs.GUIProgramming.etran.*;
