@@ -7,15 +7,8 @@
 package edu.uml.cs.GUIProgramming.jebert;
 
 import edu.uml.cs.GUIProgramming.heines.GUIUtilities;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BoundedRangeModel;
 import javax.swing.JButton;
-import javax.swing.JProgressBar;
-import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 
 
 /**
@@ -29,31 +22,45 @@ import javax.swing.SwingWorker;
  */
 public class PlayFromButtons_Jim extends javax.swing.JFrame {
   
+  /** the following is required to keep NetBeans happy */
+  static final long serialVersionUID = 0 ;
+
   /**
    * sequence of buttons pressed
    */
   Vector<String> vecStoredSequence = new Vector<String>() ;
-  
+
+  /**
+   * sequence of buttons pressed
+   */
+  Vector<String> vecAllNumbersSequence = new Vector<String>() ;
+
+  /**
+   * sequence to play, where 1 = vecStoredSequence and 2 = vecAllNumbersSequence
+   */
+  int nSequenceToPlay = 1 ;
+
+  /**
+   * path to the audio files in Jim's src directory
+   */
+  String strFilesHome = "src/edu/uml/cs/GUIProgramming/jebert/" ;
+
   /**
    * array of names of WAV files
    */
-  String[] strFiles = { "zero", "one", "two", "three", "four", 
+  String[] strFiles = { "zero", "one", "two", "three", "four",
       "five", "six", "seven", "eight", "nine" } ;
-    
+
 
   /** Creates new form PlayFromButtons */
   public PlayFromButtons_Jim() {
     // set the UI manager
-    if ( ! GUIUtilities.SetNetBeansCompatibleUIManager() ) {
-      System.exit( 1 );  // abort run
-    }
+    GUIUtilities.SetNetBeansCompatibleUIManager();
 
     initComponents() ;
-    
+
     // set background of text field to that of frame
     jtxfStoredSequence.setBackground( this.getBackground() ) ;
-    //jbrProgress.setValue(jbrProgress.getMaximum());
-    jbrProgress = new JProgressBar(0, 100);
   }
   
   /** This method is called from within the constructor to
@@ -328,9 +335,10 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
    * @param evt a standard Java action event for a JButton 
    */
   private void jbtnPlayStoredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPlayStoredActionPerformed
-
-      System.out.println("m");
-    PlaySequence thread = new PlaySequence( vecStoredSequence, jbrProgress ) ;
+    //System.out.println("m");
+    jbrProgress.setValue( 0 ) ;
+    nSequenceToPlay = 1 ;   // 1 = vecStoredSequence
+    PlaySequence thread = new PlaySequence( this, vecStoredSequence ) ;
     thread.start() ;
   }//GEN-LAST:event_jbtnPlayStoredActionPerformed
 
@@ -356,13 +364,13 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
    */
   private void NumberedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumberedButtonActionPerformed
     // TODO add your handling code here:
-    jtxfStoredSequence.setText( jtxfStoredSequence.getText() + 
+    jtxfStoredSequence.setText( jtxfStoredSequence.getText() +
         ((JButton) evt.getSource()).getText() ) ;
     jbtnPlayStored.setEnabled( true ) ;
     jbtnClearStored.setEnabled( true ) ;
     jbtnDelete.setEnabled( true ) ;
-    vecStoredSequence.add( evt.getActionCommand() ) ;    
-    new AePlayWave( evt.getActionCommand() ).start() ;    
+    vecStoredSequence.add( strFilesHome + evt.getActionCommand() ) ;
+    new AePlayWave( strFilesHome + evt.getActionCommand() ).start() ;
   }//GEN-LAST:event_NumberedButtonActionPerformed
 
   /**
@@ -371,16 +379,16 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
    * @param evt a standard Java action event for a JButton 
    */
   private void jbtnPlayAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPlayAllActionPerformed
-    // TODO add your handling code here:    
     // create a local vector and add all the WAV files to that data structure
-    Vector<String> vecSequence = new Vector<String>() ;
+    // Vector<String> vecSequence = new Vector<String>() ;
+    vecAllNumbersSequence.clear() ;
     for ( int k = 0 ; k < strFiles.length ; k++ ) {
-      vecSequence.add( strFiles[ k ] + ".wav " ) ;
+      vecAllNumbersSequence.add( strFilesHome + strFiles[ k ] + ".wav " ) ;
     }
     // play the created sequence of WAV files
-    PlaySequence thread = new PlaySequence( vecSequence, jbrProgress ) ;
-//    jbrProgress = new JProgressBar(0, vecSequence.size());
-//    jbrProgress.setValue(0);
+    jbrProgress.setValue( 0 ) ;
+    nSequenceToPlay = 2 ;   // 2 = vecAllNumbersSequence
+    PlaySequence thread = new PlaySequence( this, vecAllNumbersSequence ) ;
     thread.start() ;
 }//GEN-LAST:event_jbtnPlayAllActionPerformed
 
@@ -409,28 +417,27 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_jbtnDeleteActionPerformed
 
+  /**
+   * Set the value of the progress bar to the value passed from the PlaySequence thread.
+   */
+  public void incrementProgressBarValue() {
+    int jpbIncrement ;
+    switch ( nSequenceToPlay ) {
+      case 1 :
+        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecStoredSequence.size() ) ;
+        jbrProgress.setValue( jbrProgress.getValue() + jpbIncrement ) ;
+        break ;
+      case 2 :
+        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecAllNumbersSequence.size() ) ;
+        jbrProgress.setValue( jbrProgress.getValue() + jpbIncrement ) ;
+        break ;
+    }
+  }
+
   private void jtxfStoredSequencePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtxfStoredSequencePropertyChange
 
   }//GEN-LAST:event_jtxfStoredSequencePropertyChange
 
-//  class Update implements Runnable
-//{
-//    private JProgressBar jbProg;
-//    private int value;
-//
-//    public Update(JProgressBar jpb, int v)
-//    {
-//        jbProg = jpb;
-//        value = v;
-//    }
-//
-//    @Override
-//    public void run() {
-//        jbProg.setValue(value);
-//        jbProg.validate();
-//    }
-//
-//}
   /**
    * @param args the command line arguments
    */
@@ -442,118 +449,6 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     });
   }
 
-  class PlaySequence extends Thread {
-
-  /**
-   * sequence to play
-   */
-  Vector<String> vecSequence = new Vector<String>() ;
-  JProgressBar jbrProg;
-  private Runnable update;
-
-  /**
-   * constructor
-   * @param vecSequence required sequence of WAV file paths to play
-   */
-  public PlaySequence( Vector<String> vecSequence, JProgressBar jpb ) {
-    this.vecSequence = vecSequence;
-    jbrProg = jpb;
-    //jbrProgress = new JProgressBar(0, vecSequence.size());
-    //jbrProgress.setValue(jbrProgress.getMaximum());
-    //jbrProgress.setValue(0);
-
-    //this.jbrProgress = new JProgressBar(0, vecSequence.size());
-    jbrProg.setMinimum(0);
-    jbrProg.setMaximum(vecSequence.size());
-  }
-
-  /**
-   * thread run method that is called when the thread start method is called
-   */
-  @Override
-  public void run() {
-    for ( int k = 0 ; k < vecSequence.size() ; k++ ) {
-      //  final int n = k;
-        Start s = new Start(jbrProg, k);
-        s.start();
-      AePlayWave thread = new AePlayWave( vecSequence.get( k ) ) ;
- //     Advance s = new Advance(jbrProg, k);
-      System.out.println("min = " + jbrProg.getMinimum() + ", max = " + jbrProg.getMaximum());
-
-//      update = new Runnable()
-//        {
-//            public void run()
-//            {
-//                jbrProg.setValue(n);
-////                notify();
-//            }
-//        };
-     
-    //  jbrProgress.setValue(jbrProgress.getMaximum());
-      thread.start() ;  // play the selected audio clip
-      try {
-          //s.join();
-        thread.join() ; // wait for the thread playing to clip to die
-        //jbrProgress.setValue((k / vecSequence.size() * 100));       
-      } catch ( InterruptedException ie ) {
-          System.out.println(ie.getMessage());
-        // do nothing - required by the join() method
-        //    this is a "checked exception", therefore it must be caught
-      }
-    }
-  }
-}
-
-class Advance extends Thread
-{
-     private JProgressBar jpb;
-    private Runnable update, finish;
-    int value, min, max, inc;
-
-    public Advance(JProgressBar j, int n)
-    {
-        jpb = j;
-        min = jpb.getMinimum();
-        max = jpb.getMaximum();
-        inc = n;
-
-        update = new Runnable()
-        {
-            public void run()
-            {
-                jpb.setValue(inc);
-//                notify();
-            }
-        };
-    }
-
-    public void run()
-    {
-        System.out.println(inc);
-//            try {
-                //simulate();
-                SwingUtilities.invokeLater(update);
-                //notify();
-//            } catch (InterruptedException ex) {
-//                System.out.println(ex.getMessage());
-//            } catch (InvocationTargetException ex) {
-//                System.out.println(ex.getMessage());
-//            }
-        //notify();
-    }
-
-    @SuppressWarnings("static-access")
-    private void simulate()
-    {
-        try {
-            Thread.currentThread().sleep(10);
-        } catch (InterruptedException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-}
-  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     /** the 0 button */
     private javax.swing.JButton btn0;
@@ -577,6 +472,7 @@ class Advance extends Thread
     private javax.swing.JButton btn9;
     /** button to exit the program */
     private javax.swing.JButton btnExit;
+    /** shows the progress of the sequence */
     private javax.swing.JProgressBar jbrProgress;
     /** button to clear the stored sequence */
     private javax.swing.JButton jbtnClearStored;
@@ -593,44 +489,51 @@ class Advance extends Thread
     // End of variables declaration//GEN-END:variables
   
 }
-class Start extends Thread
-{
-    private JProgressBar jpb;
-    private Runnable update, finish;
-    int value, min, max, inc;
 
-    public Start(JProgressBar j, int n)
-    {
-        jpb = j;
-        min = jpb.getMinimum();
-        max = jpb.getMaximum();
-        inc = n;
+/**
+ * This class plays a sequence of recorded sounds in a separate thread so that
+ * the user does not lose control of the UI.
+ * @author Jesse Heines, UMass Lowell Computer Science
+ * @author <a href="mailto:heines@cs.uml.edu">heines@cs.uml.edu</a>
+ * @version 1.0, 2008-04-29, April 29, 2008
+ */
+class PlaySequence extends Thread {
 
-        update = new Runnable()
-        {
-            public void run()
-            {
-                jpb.setValue(inc);
-//                notify();
-            }
-        };
+  /**
+   * the main application with the GUI thread
+   */
+  PlayFromButtons_Jim theApp ;
+
+  /**
+   * sequence to play
+   */
+  Vector<String> vecSequence = new Vector<String>() ;
+
+  /**
+   * constructor
+   * @param vecSequence required sequence of WAV file paths to play
+   */
+  public PlaySequence( PlayFromButtons_Jim theApp, Vector<String> vecSequence ) {
+    this.theApp = theApp ;
+    this.vecSequence = vecSequence;
+  }
+
+  /**
+   * thread run method that is called when the thread start method is called
+   */
+  @Override
+  public void run() {
+    for ( int k = 0 ; k < vecSequence.size() ; k++ ) {
+      AePlayWave thread = new AePlayWave( vecSequence.get( k ) ) ;
+      theApp.incrementProgressBarValue();
+      thread.start() ;  // play the selected audio clip
+      try {          
+        thread.join() ; // wait for the thread playing to clip to die
+      } catch ( InterruptedException ie ) {
+        // do nothing - required by the join() method
+        //    this is a "checked exception", therefore it must be caught
+      }
+      //theApp.incrementProgressBarValue();
     }
-
-    public void run()
-    {
-        simulate();
-        SwingUtilities.invokeLater(update);
-        //notify();
-    }
-
-    @SuppressWarnings("static-access")
-    private void simulate()
-    {
-        try {
-            Thread.currentThread().sleep(10);
-        } catch (InterruptedException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
+  }
 }
