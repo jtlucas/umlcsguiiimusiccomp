@@ -7,6 +7,7 @@
 package edu.uml.cs.GUIProgramming.jebert;
 
 import edu.uml.cs.GUIProgramming.heines.GUIUtilities;
+import java.awt.Cursor;
 import java.util.Vector;
 import javax.swing.JButton;
 
@@ -136,11 +137,6 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
 
         jtxfStoredSequence.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jtxfStoredSequence.setEnabled(false);
-        jtxfStoredSequence.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jtxfStoredSequencePropertyChange(evt);
-            }
-        });
 
         jlblStoredSequence.setLabelFor(jtxfStoredSequence);
         jlblStoredSequence.setText("Stored Sequence");
@@ -229,6 +225,12 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
         jbtnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnDeleteActionPerformed(evt);
+            }
+        });
+
+        jbrProgress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jbrProgressMousePressed(evt);
             }
         });
 
@@ -338,7 +340,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     //System.out.println("m");
     jbrProgress.setValue( 0 ) ;
     nSequenceToPlay = 1 ;   // 1 = vecStoredSequence
-    PlaySequence thread = new PlaySequence( this, vecStoredSequence ) ;
+    PlaySequence thread = new PlaySequence( this, vecStoredSequence) ;
     thread.start() ;
   }//GEN-LAST:event_jbtnPlayStoredActionPerformed
 
@@ -388,7 +390,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     // play the created sequence of WAV files
     jbrProgress.setValue( 0 ) ;
     nSequenceToPlay = 2 ;   // 2 = vecAllNumbersSequence
-    PlaySequence thread = new PlaySequence( this, vecAllNumbersSequence ) ;
+    PlaySequence thread = new PlaySequence( this, vecAllNumbersSequence) ;
     thread.start() ;
 }//GEN-LAST:event_jbtnPlayAllActionPerformed
 
@@ -434,9 +436,14 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     }
   }
 
-  private void jtxfStoredSequencePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jtxfStoredSequencePropertyChange
+  private void jbrProgressMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbrProgressMousePressed
+      //Thread.currentThread().;
+      setCursor(Cursor.WAIT_CURSOR);
+      jbrProgress.setValue(50);
+      evt.getPoint();
 
-  }//GEN-LAST:event_jtxfStoredSequencePropertyChange
+
+  }//GEN-LAST:event_jbrProgressMousePressed
 
   /**
    * @param args the command line arguments
@@ -513,7 +520,8 @@ class PlaySequence extends Thread {
    * constructor
    * @param vecSequence required sequence of WAV file paths to play
    */
-  public PlaySequence( PlayFromButtons_Jim theApp, Vector<String> vecSequence ) {
+  public PlaySequence( PlayFromButtons_Jim theApp, Vector<String> vecSequence)
+  {
     this.theApp = theApp ;
     this.vecSequence = vecSequence;
   }
@@ -526,10 +534,19 @@ class PlaySequence extends Thread {
     for ( int k = 0 ; k < vecSequence.size() ; k++ ) {
       AePlayWave thread = new AePlayWave( vecSequence.get( k ) ) ;
       theApp.incrementProgressBarValue();
+
+      if(theApp.getCursorType() ==  Cursor.WAIT_CURSOR)
+      {
+          theApp.setCursor(Cursor.DEFAULT_CURSOR);
+          k = vecSequence.size();
+          break;
+      }
+
       thread.start() ;  // play the selected audio clip
       try {          
         thread.join() ; // wait for the thread playing to clip to die
       } catch ( InterruptedException ie ) {
+          theApp.setCursor(Cursor.DEFAULT_CURSOR);
         // do nothing - required by the join() method
         //    this is a "checked exception", therefore it must be caught
       }
