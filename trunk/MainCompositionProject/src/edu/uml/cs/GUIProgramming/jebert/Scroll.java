@@ -81,6 +81,7 @@ public class Scroll extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Scroll Practice");
 
+        jpnlHold.setToolTipText("Left-click to add a label, right-click to clear all the added labels.");
         jpnlHold.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jpnlHoldMouseReleased(evt);
@@ -93,11 +94,14 @@ public class Scroll extends javax.swing.JFrame {
         });
 
         jbtnScroll.setText("Scroll to label: ");
+        jbtnScroll.setToolTipText("Press this to go to the position of the number entered so that it's label is visible.");
         jbtnScroll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnScrollActionPerformed(evt);
             }
         });
+
+        jtxtLabelToFind.setToolTipText("Put the number of the label to look for here.");
 
         javax.swing.GroupLayout jpnlHoldLayout = new javax.swing.GroupLayout(jpnlHold);
         jpnlHold.setLayout(jpnlHoldLayout);

@@ -59,6 +59,9 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="jpnlHold">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Left-click to add a label, right-click to clear all the added labels."/>
+              </Properties>
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpnlHoldMouseReleased"/>
                 <EventHandler event="componentResized" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jpnlHoldComponentResized"/>
@@ -103,6 +106,7 @@
                 <Component class="javax.swing.JButton" name="jbtnScroll">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Scroll to label: "/>
+                    <Property name="toolTipText" type="java.lang.String" value="Press this to go to the position of the number entered so that it&apos;s label is visible."/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnScrollActionPerformed"/>
@@ -112,6 +116,9 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jtxtLabelToFind">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Put the number of the label to look for here."/>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** Holds the number of the label to scroll to */"/>
                   </AuxValues>
