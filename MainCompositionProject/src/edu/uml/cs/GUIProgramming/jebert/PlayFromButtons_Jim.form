@@ -206,9 +206,6 @@
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jtxfStoredSequencePropertyChange"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** text field for displaying the stored sequence */"/>
       </AuxValues>
@@ -352,6 +349,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jbrProgress">
+      <Events>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbrProgressMousePressed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** shows the progress of the sequence */"/>
       </AuxValues>
