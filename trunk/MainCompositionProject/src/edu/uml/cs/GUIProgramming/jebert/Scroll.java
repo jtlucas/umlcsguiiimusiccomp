@@ -168,12 +168,6 @@ public class Scroll extends javax.swing.JFrame {
          * http://java.sun.com/docs/books/tutorial/uiswing/components
          * /scrollpane.html
          */
-
-        jsclShift.setVerticalScrollBarPolicy
-                (ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jsclShift.setHorizontalScrollBarPolicy
-                (ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
         final int labelWidth = 30;
         final int labelHeight = 30;
         /** the extra space added to the height and width if the 
