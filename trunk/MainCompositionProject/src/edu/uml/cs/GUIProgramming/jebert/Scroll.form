@@ -61,6 +61,7 @@
             <Container class="javax.swing.JPanel" name="jpnlHold">
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpnlHoldMouseReleased"/>
+                <EventHandler event="componentResized" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="jpnlHoldComponentResized"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** holds the gui components */"/>
@@ -70,32 +71,54 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="jbtnMove" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="249" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jlblError" alignment="0" max="32767" attributes="1"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jbtnScroll" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jtxtLabelToFind" min="-2" pref="75" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="236" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                          <Component id="jbtnMove" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="218" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jbtnScroll" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtxtLabelToFind" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jlblError" min="-2" pref="19" max="-2" attributes="0"/>
+                          <EmptySpace pref="244" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jbtnMove">
+                <Component class="javax.swing.JButton" name="jbtnScroll">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Move"/>
+                    <Property name="text" type="java.lang.String" value="Scroll to label: "/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnMoveActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnScrollActionPerformed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** Moves the scroll pane around */"/>
+                    <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** goes to the specific jlabel that is indicated in the test field */"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jtxtLabelToFind">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** Holds the number of the label to scroll to */"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jlblError">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** Displays error messages to the user */"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
