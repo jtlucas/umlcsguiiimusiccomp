@@ -11,6 +11,8 @@
 
 package edu.uml.cs.GUIProgramming.plaidler;
 
+import edu.uml.cs.GUIProgramming.heines.GUIUtilities.*;
+
 
 /**
  * This class contains an interface to select orchestra instruments.
@@ -26,6 +28,9 @@ public class OrchestraStub extends javax.swing.JFrame {
 
     /** Creates new form OrchestraStub */
     public OrchestraStub() {
+        //Use static method from heines utilities to set windows style UIManager
+        edu.uml.cs.GUIProgramming.heines.GUIUtilities.SetNetBeansCompatibleUIManager();
+
         initComponents();
 
         //create a new orchestra
@@ -271,7 +276,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument1ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(0);
-        myOrchestra.playNote(0, 60, 127, 500);
+        myOrchestra.playNote(0, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument1ActionPerformed
     /**
      * button Instrument 2 action performed
@@ -280,7 +285,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument2ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(1);
-        myOrchestra.playNote(1, 60, 127, 500);
+        myOrchestra.playNote(1, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument2ActionPerformed
     /**
      * button Instrument 3 action performed
@@ -289,7 +294,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument3ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(2);
-        myOrchestra.playNote(2, 60, 127, 500);
+        myOrchestra.playNote(2, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument3ActionPerformed
     /**
      * button Instrument 4 action performed
@@ -298,7 +303,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument4ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(3);
-        myOrchestra.playNote(3, 60, 127, 500);
+        myOrchestra.playNote(3, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument4ActionPerformed
     /**
      * button Instrument 5 action performed
@@ -307,7 +312,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument5ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(4);
-        myOrchestra.playNote(4, 60, 127, 500);
+        myOrchestra.playNote(4, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument5ActionPerformed
     /**
      * button Instrument 6 action performed
@@ -316,7 +321,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument6ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(5);
-        myOrchestra.playNote(5, 60, 127, 500);
+        myOrchestra.playNote(5, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument6ActionPerformed
     /**
      * button Instrument 7 action performed
@@ -325,7 +330,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument7ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(6);
-        myOrchestra.playNote(6, 60, 127, 500);
+        myOrchestra.playNote(6, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument7ActionPerformed
     /**
      * button Instrument 8 action performed
@@ -334,7 +339,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument8ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(7);
-        myOrchestra.playNote(7, 60, 127, 500);
+        myOrchestra.playNote(7, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument8ActionPerformed
     /**
      * button Instrument 9 action performed
@@ -343,7 +348,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Instrument9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument9ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(8);
-        myOrchestra.playNote(8, 60, 127, 500);
+        myOrchestra.playNote(8, 60, 80, 500);
 }//GEN-LAST:event_jb_Instrument9ActionPerformed
     /**
      * button Instrument 10 action performed
@@ -352,7 +357,7 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void jb_Istrument10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Istrument10ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(9);
-        myOrchestra.playNote(9, 60, 127, 500);
+        myOrchestra.playNote(9, 60, 80, 500);
 }//GEN-LAST:event_jb_Istrument10ActionPerformed
 
     /**
