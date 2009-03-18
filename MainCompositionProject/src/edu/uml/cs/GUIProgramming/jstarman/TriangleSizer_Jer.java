@@ -221,18 +221,12 @@ class TriangleSize extends MouseAdapter {
         //using Paul's class to handle playing the note.
         Orchestra myOrchestra = new Orchestra();
 
-        //getting the rectangle component
+        //getting the triangle component
         Polygon tri = component.triangle;
 
-        //calculation duration of note based on shape width,
+        //calculating duration of note based on shape width,
         //max duration will be slightly longer then 2 seconds.
-
         int duration = (tri.xpoints[2] - tri.xpoints[1]) * 4;
-        //double doubleDuration = ((int) tri.xpoints[2] - tri.xpoints[1] );
-        //int duration = (int)doubleDuration;
-
-        System.err.println(tri.xpoints[0] + " " + tri.xpoints[1] + " " + tri.xpoints[2] );
-
 
 
         //calculating volume based on shape height, this will change though
