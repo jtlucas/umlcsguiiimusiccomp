@@ -9,21 +9,76 @@
  * Created on Feb 19, 2009, 2:43:03 AM
  */
 
-//TODO: Toolbar needs icons
 package edu.uml.cs.GUIProgramming.plaidler;
 
 
 /**
- *
- * @author paul
+ * This class contains an interface to select orchestra instruments.
+ * @author Paul A Laidler, UMass Lowell Computer Science
+ * @version 1.01, March 18, 2009
  */
 public class OrchestraStub extends javax.swing.JFrame {
-    /** Creates new form InstrumentSelectDemo */
-    Orchestra myOrchestra;
 
+    /** The orchestra object to be used by the Instrument interface. */
+    Orchestra myOrchestra;
+    /** A widgit to be attached to the main application to display Instrument Information */
+    InstrumentInfo iInfo;
+
+    /** Creates new form OrchestraStub */
     public OrchestraStub() {
         initComponents();
+
+        //create a new orchestra
         myOrchestra = new Orchestra();
+        //create a new form Instrument Information, pass this Form for reference.
+        iInfo = new InstrumentInfo( this );
+        //Allow the Instrument Information form to attach its panel to a panel in this form.
+        iInfo.attachInfoPanel( this.jpnl_InstrumentInfoArea );
+        //Attach a listener to the Instrument Information panel's combo box.
+        iInfo.attachComboBoxListener( new InstrumentInfoAppComboBoxListener() );
+
+        //Select the first button in the instrument buttons button group.
+        InstrumentButtons.setSelected(jb_Instrument1.getModel(), rootPaneCheckingEnabled);
+    }
+
+    /**
+     * A ComboBox action listener to attach to the Instrument Information Application.
+     */
+    class InstrumentInfoAppComboBoxListener implements java.awt.event.ActionListener {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+            Runnable updateInfoPanel = new Runnable() {
+                public void run() {
+                    //Iterate through the buttons in the instruments button group to find the selected one.
+                    java.awt.Component[] components = jpnl_Instruments.getComponents();
+                    for (java.awt.Component c : components)
+                    {
+                      javax.swing.JToggleButton jb = (javax.swing.JToggleButton) c;
+                      if (jb.isSelected()) {
+                          //Set the text on the selected button to reflect the currently selected instrument.
+                          jb.setText(myOrchestra.getSelectedInstrumentName());
+                      }
+                    }
+                }
+            };
+            //InvokeLater to avoid updating instrument before it has been changed by other button action listeners.
+            javax.swing.SwingUtilities.invokeLater(updateInfoPanel);
+        }
+    }
+
+    /**
+     * Attach the specified action listener to all instrument selection buttons.
+     */
+    public void attachButtonChangeListener(java.awt.event.ActionListener myActionListener) {
+        jb_Instrument5.addActionListener(myActionListener);
+        jb_Instrument9.addActionListener(myActionListener);
+        jb_Instrument8.addActionListener(myActionListener);
+        jb_Instrument2.addActionListener(myActionListener);
+        jb_Istrument10.addActionListener(myActionListener);
+        jb_Instrument3.addActionListener(myActionListener);
+        jb_Instrument4.addActionListener(myActionListener);
+        jb_Instrument1.addActionListener(myActionListener);
+        jb_Instrument7.addActionListener(myActionListener);
+        jb_Instrument6.addActionListener(myActionListener);
     }
 
     /** This method is called from within the constructor to
@@ -36,377 +91,269 @@ public class OrchestraStub extends javax.swing.JFrame {
     private void initComponents() {
 
         InstrumentButtons = new javax.swing.ButtonGroup();
-        jtb_InstrumentToolbar = new javax.swing.JToolBar();
-        jb_Piano = new javax.swing.JToggleButton();
-        jb_Clavinet = new javax.swing.JToggleButton();
-        jb_NylonGuitar = new javax.swing.JToggleButton();
-        jb_OverdrivenGuitar = new javax.swing.JToggleButton();
-        jb_AcousticBass = new javax.swing.JToggleButton();
-        jb_Violin = new javax.swing.JToggleButton();
-        jb_StringEnsemble = new javax.swing.JToggleButton();
-        jb_Choir = new javax.swing.JToggleButton();
-        jb_BrassEnsemble = new javax.swing.JToggleButton();
-        jb_Drumkit = new javax.swing.JToggleButton();
-        jmb_MainMenuBar = new javax.swing.JMenuBar();
-        jm_OldInstrumentMenu = new javax.swing.JMenu();
-        jmi_Piano = new javax.swing.JMenuItem();
-        jmi_Clavinet = new javax.swing.JMenuItem();
-        jmi_NylonGuitar = new javax.swing.JMenuItem();
-        jmi_OverdrivenGuitar = new javax.swing.JMenuItem();
-        jmi_AcousticBass = new javax.swing.JMenuItem();
-        jmi_Violin = new javax.swing.JMenuItem();
-        jmi_StringEnsemble = new javax.swing.JMenuItem();
-        jmi_Choir = new javax.swing.JMenuItem();
-        jmi_BrassEnsemble = new javax.swing.JMenuItem();
-        jmi_Drumkit = new javax.swing.JMenuItem();
+        jpnl_Instruments = new javax.swing.JPanel();
+        jb_Instrument1 = new javax.swing.JToggleButton();
+        jb_Instrument2 = new javax.swing.JToggleButton();
+        jb_Instrument3 = new javax.swing.JToggleButton();
+        jb_Instrument4 = new javax.swing.JToggleButton();
+        jb_Instrument5 = new javax.swing.JToggleButton();
+        jb_Instrument6 = new javax.swing.JToggleButton();
+        jb_Instrument7 = new javax.swing.JToggleButton();
+        jb_Instrument8 = new javax.swing.JToggleButton();
+        jb_Instrument9 = new javax.swing.JToggleButton();
+        jb_Istrument10 = new javax.swing.JToggleButton();
+        jpnl_InstrumentInfoArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Instrument Select");
 
-        jtb_InstrumentToolbar.setFloatable(false);
-        jtb_InstrumentToolbar.setRollover(true);
+        jpnl_Instruments.setLayout(new java.awt.GridLayout(2, 0));
 
-        InstrumentButtons.add(jb_Piano);
-        jb_Piano.setText("Piano");
-        jb_Piano.setFocusable(false);
-        jb_Piano.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_Piano.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_Piano.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument1);
+        jb_Instrument1.setText("Piano");
+        jb_Instrument1.setFocusable(false);
+        jb_Instrument1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_PianoActionPerformed(evt);
+                jb_Instrument1ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_Piano);
+        jpnl_Instruments.add(jb_Instrument1);
 
-        InstrumentButtons.add(jb_Clavinet);
-        jb_Clavinet.setText("Clavinet");
-        jb_Clavinet.setFocusable(false);
-        jb_Clavinet.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_Clavinet.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_Clavinet.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument2);
+        jb_Instrument2.setText("Clavinet");
+        jb_Instrument2.setFocusable(false);
+        jb_Instrument2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_ClavinetActionPerformed(evt);
+                jb_Instrument2ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_Clavinet);
+        jpnl_Instruments.add(jb_Instrument2);
 
-        InstrumentButtons.add(jb_NylonGuitar);
-        jb_NylonGuitar.setText("Nylon Guitar");
-        jb_NylonGuitar.setFocusable(false);
-        jb_NylonGuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_NylonGuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_NylonGuitar.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument3);
+        jb_Instrument3.setText("Nylon Str Guitar");
+        jb_Instrument3.setFocusable(false);
+        jb_Instrument3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_NylonGuitarActionPerformed(evt);
+                jb_Instrument3ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_NylonGuitar);
+        jpnl_Instruments.add(jb_Instrument3);
 
-        InstrumentButtons.add(jb_OverdrivenGuitar);
-        jb_OverdrivenGuitar.setText("Overdriven Guitar");
-        jb_OverdrivenGuitar.setFocusable(false);
-        jb_OverdrivenGuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_OverdrivenGuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_OverdrivenGuitar.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument4);
+        jb_Instrument4.setText("Overdrive Guitar");
+        jb_Instrument4.setFocusable(false);
+        jb_Instrument4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_OverdrivenGuitarActionPerformed(evt);
+                jb_Instrument4ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_OverdrivenGuitar);
+        jpnl_Instruments.add(jb_Instrument4);
 
-        InstrumentButtons.add(jb_AcousticBass);
-        jb_AcousticBass.setText("Acoustic Bass");
-        jb_AcousticBass.setFocusable(false);
-        jb_AcousticBass.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_AcousticBass.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_AcousticBass.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument5);
+        jb_Instrument5.setText("Acoustic Bass");
+        jb_Instrument5.setFocusable(false);
+        jb_Instrument5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_AcousticBassActionPerformed(evt);
+                jb_Instrument5ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_AcousticBass);
+        jpnl_Instruments.add(jb_Instrument5);
 
-        InstrumentButtons.add(jb_Violin);
-        jb_Violin.setText("Violin");
-        jb_Violin.setFocusable(false);
-        jb_Violin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_Violin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_Violin.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument6);
+        jb_Instrument6.setText("Violin");
+        jb_Instrument6.setFocusable(false);
+        jb_Instrument6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_ViolinActionPerformed(evt);
+                jb_Instrument6ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_Violin);
+        jpnl_Instruments.add(jb_Instrument6);
 
-        InstrumentButtons.add(jb_StringEnsemble);
-        jb_StringEnsemble.setText("String Ensemble");
-        jb_StringEnsemble.setFocusable(false);
-        jb_StringEnsemble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_StringEnsemble.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_StringEnsemble.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument7);
+        jb_Instrument7.setText("Ensemble Strings");
+        jb_Instrument7.setFocusable(false);
+        jb_Instrument7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_StringEnsembleActionPerformed(evt);
+                jb_Instrument7ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_StringEnsemble);
+        jpnl_Instruments.add(jb_Instrument7);
 
-        InstrumentButtons.add(jb_Choir);
-        jb_Choir.setText("Choir");
-        jb_Choir.setFocusable(false);
-        jb_Choir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_Choir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_Choir.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument8);
+        jb_Instrument8.setText("Choir Aahs");
+        jb_Instrument8.setFocusable(false);
+        jb_Instrument8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_ChoirActionPerformed(evt);
+                jb_Instrument8ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_Choir);
+        jpnl_Instruments.add(jb_Instrument8);
 
-        InstrumentButtons.add(jb_BrassEnsemble);
-        jb_BrassEnsemble.setText("Brass Ensemble");
-        jb_BrassEnsemble.setFocusable(false);
-        jb_BrassEnsemble.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_BrassEnsemble.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_BrassEnsemble.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Instrument9);
+        jb_Instrument9.setText("Brass Ensemble");
+        jb_Instrument9.setFocusable(false);
+        jb_Instrument9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Instrument9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Instrument9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_BrassEnsembleActionPerformed(evt);
+                jb_Instrument9ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_BrassEnsemble);
+        jpnl_Instruments.add(jb_Instrument9);
 
-        InstrumentButtons.add(jb_Drumkit);
-        jb_Drumkit.setText("Drumkit");
-        jb_Drumkit.setFocusable(false);
-        jb_Drumkit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jb_Drumkit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jb_Drumkit.addActionListener(new java.awt.event.ActionListener() {
+        InstrumentButtons.add(jb_Istrument10);
+        jb_Istrument10.setText("Drumkit");
+        jb_Istrument10.setFocusable(false);
+        jb_Istrument10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jb_Istrument10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jb_Istrument10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_DrumkitActionPerformed(evt);
+                jb_Istrument10ActionPerformed(evt);
             }
         });
-        jtb_InstrumentToolbar.add(jb_Drumkit);
+        jpnl_Instruments.add(jb_Istrument10);
 
-        jm_OldInstrumentMenu.setText("Instrument Menu");
+        jpnl_InstrumentInfoArea.setPreferredSize(new java.awt.Dimension(256, 92));
 
-        jmi_Piano.setText("Piano");
-        jmi_Piano.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_PianoActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_Piano);
-
-        jmi_Clavinet.setText("Clavinet");
-        jmi_Clavinet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_ClavinetActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_Clavinet);
-
-        jmi_NylonGuitar.setText("Nylon Guitar");
-        jmi_NylonGuitar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_NylonGuitarActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_NylonGuitar);
-
-        jmi_OverdrivenGuitar.setText("Overdriven Guitar");
-        jmi_OverdrivenGuitar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_OverdrivenGuitarActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_OverdrivenGuitar);
-
-        jmi_AcousticBass.setText("Acoustic Bass");
-        jmi_AcousticBass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_AcousticBassActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_AcousticBass);
-
-        jmi_Violin.setText("Violin");
-        jmi_Violin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_ViolinActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_Violin);
-
-        jmi_StringEnsemble.setText("String Ensemble");
-        jmi_StringEnsemble.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_StringEnsembleActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_StringEnsemble);
-
-        jmi_Choir.setText("Choir");
-        jmi_Choir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_ChoirActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_Choir);
-
-        jmi_BrassEnsemble.setText("Brass Ensamble");
-        jmi_BrassEnsemble.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_BrassEnsembleActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_BrassEnsemble);
-
-        jmi_Drumkit.setText("Drumkit");
-        jmi_Drumkit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_DrumkitActionPerformed(evt);
-            }
-        });
-        jm_OldInstrumentMenu.add(jmi_Drumkit);
-
-        jmb_MainMenuBar.add(jm_OldInstrumentMenu);
-
-        setJMenuBar(jmb_MainMenuBar);
+        javax.swing.GroupLayout jpnl_InstrumentInfoAreaLayout = new javax.swing.GroupLayout(jpnl_InstrumentInfoArea);
+        jpnl_InstrumentInfoArea.setLayout(jpnl_InstrumentInfoAreaLayout);
+        jpnl_InstrumentInfoAreaLayout.setHorizontalGroup(
+            jpnl_InstrumentInfoAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
+        );
+        jpnl_InstrumentInfoAreaLayout.setVerticalGroup(
+            jpnl_InstrumentInfoAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 254, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtb_InstrumentToolbar, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+            .addComponent(jpnl_InstrumentInfoArea, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpnl_Instruments, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jtb_InstrumentToolbar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(jpnl_InstrumentInfoArea, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jpnl_Instruments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(254, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmi_PianoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_PianoActionPerformed
+    /**
+     * button Instrument 1 action performed
+     * @param evt
+     */
+    private void jb_Instrument1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument1ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(0);
         myOrchestra.playNote(0, 60, 127, 500);
-}//GEN-LAST:event_jmi_PianoActionPerformed
-
-    private void jmi_ClavinetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ClavinetActionPerformed
+}//GEN-LAST:event_jb_Instrument1ActionPerformed
+    /**
+     * button Instrument 2 action performed
+     * @param evt
+     */
+    private void jb_Instrument2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument2ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(1);
         myOrchestra.playNote(1, 60, 127, 500);
-    }//GEN-LAST:event_jmi_ClavinetActionPerformed
-
-    private void jmi_NylonGuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_NylonGuitarActionPerformed
+}//GEN-LAST:event_jb_Instrument2ActionPerformed
+    /**
+     * button Instrument 3 action performed
+     * @param evt
+     */
+    private void jb_Instrument3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument3ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(2);
         myOrchestra.playNote(2, 60, 127, 500);
-    }//GEN-LAST:event_jmi_NylonGuitarActionPerformed
-
-    private void jmi_OverdrivenGuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_OverdrivenGuitarActionPerformed
+}//GEN-LAST:event_jb_Instrument3ActionPerformed
+    /**
+     * button Instrument 4 action performed
+     * @param evt
+     */
+    private void jb_Instrument4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument4ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(3);
         myOrchestra.playNote(3, 60, 127, 500);
-    }//GEN-LAST:event_jmi_OverdrivenGuitarActionPerformed
-
-    private void jmi_AcousticBassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_AcousticBassActionPerformed
+}//GEN-LAST:event_jb_Instrument4ActionPerformed
+    /**
+     * button Instrument 5 action performed
+     * @param evt
+     */
+    private void jb_Instrument5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument5ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(4);
         myOrchestra.playNote(4, 60, 127, 500);
-    }//GEN-LAST:event_jmi_AcousticBassActionPerformed
-
-    private void jmi_ViolinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ViolinActionPerformed
+}//GEN-LAST:event_jb_Instrument5ActionPerformed
+    /**
+     * button Instrument 6 action performed
+     * @param evt
+     */
+    private void jb_Instrument6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument6ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(5);
         myOrchestra.playNote(5, 60, 127, 500);
-    }//GEN-LAST:event_jmi_ViolinActionPerformed
-
-    private void jmi_StringEnsembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_StringEnsembleActionPerformed
+}//GEN-LAST:event_jb_Instrument6ActionPerformed
+    /**
+     * button Instrument 7 action performed
+     * @param evt
+     */
+    private void jb_Instrument7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument7ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(6);
         myOrchestra.playNote(6, 60, 127, 500);
-    }//GEN-LAST:event_jmi_StringEnsembleActionPerformed
-
-    private void jmi_ChoirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ChoirActionPerformed
+}//GEN-LAST:event_jb_Instrument7ActionPerformed
+    /**
+     * button Instrument 8 action performed
+     * @param evt
+     */
+    private void jb_Instrument8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument8ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(7);
         myOrchestra.playNote(7, 60, 127, 500);
-    }//GEN-LAST:event_jmi_ChoirActionPerformed
-
-    private void jmi_BrassEnsembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_BrassEnsembleActionPerformed
+}//GEN-LAST:event_jb_Instrument8ActionPerformed
+    /**
+     * button Instrument 9 action performed
+     * @param evt
+     */
+    private void jb_Instrument9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Instrument9ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(8);
         myOrchestra.playNote(8, 60, 127, 500);
-    }//GEN-LAST:event_jmi_BrassEnsembleActionPerformed
-
-    private void jmi_DrumkitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_DrumkitActionPerformed
+}//GEN-LAST:event_jb_Instrument9ActionPerformed
+    /**
+     * button Instrument 10 action performed
+     * @param evt
+     */
+    private void jb_Istrument10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Istrument10ActionPerformed
         // TODO add your handling code here:
         myOrchestra.selectChannel(9);
         myOrchestra.playNote(9, 60, 127, 500);
-}//GEN-LAST:event_jmi_DrumkitActionPerformed
-
-    private void jb_PianoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_PianoActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(1);
-        myOrchestra.playNote(0, 60, 127, 500);
-    }//GEN-LAST:event_jb_PianoActionPerformed
-
-    private void jb_ClavinetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ClavinetActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(1);
-        myOrchestra.playNote(1, 60, 127, 500);
-    }//GEN-LAST:event_jb_ClavinetActionPerformed
-
-    private void jb_NylonGuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_NylonGuitarActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(2);
-        myOrchestra.playNote(2, 60, 127, 500);
-}//GEN-LAST:event_jb_NylonGuitarActionPerformed
-
-    private void jb_OverdrivenGuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_OverdrivenGuitarActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(3);
-        myOrchestra.playNote(3, 60, 127, 500);
-}//GEN-LAST:event_jb_OverdrivenGuitarActionPerformed
-
-    private void jb_AcousticBassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_AcousticBassActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(4);
-        myOrchestra.playNote(4, 60, 127, 500);
-}//GEN-LAST:event_jb_AcousticBassActionPerformed
-
-    private void jb_ViolinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ViolinActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(5);
-        myOrchestra.playNote(5, 60, 127, 500);
-}//GEN-LAST:event_jb_ViolinActionPerformed
-
-    private void jb_StringEnsembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_StringEnsembleActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(6);
-        myOrchestra.playNote(6, 60, 127, 500);
-}//GEN-LAST:event_jb_StringEnsembleActionPerformed
-
-    private void jb_ChoirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ChoirActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(7);
-        myOrchestra.playNote(7, 60, 127, 500);
-}//GEN-LAST:event_jb_ChoirActionPerformed
-
-    private void jb_BrassEnsembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BrassEnsembleActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(8);
-        myOrchestra.playNote(8, 60, 127, 500);
-}//GEN-LAST:event_jb_BrassEnsembleActionPerformed
-
-    private void jb_DrumkitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_DrumkitActionPerformed
-        // TODO add your handling code here:
-        myOrchestra.selectChannel(9);
-        myOrchestra.playNote(9, 60, 127, 500);
-}//GEN-LAST:event_jb_DrumkitActionPerformed
+}//GEN-LAST:event_jb_Istrument10ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -421,29 +368,18 @@ public class OrchestraStub extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup InstrumentButtons;
-    private javax.swing.JToggleButton jb_AcousticBass;
-    private javax.swing.JToggleButton jb_BrassEnsemble;
-    private javax.swing.JToggleButton jb_Choir;
-    private javax.swing.JToggleButton jb_Clavinet;
-    private javax.swing.JToggleButton jb_Drumkit;
-    private javax.swing.JToggleButton jb_NylonGuitar;
-    private javax.swing.JToggleButton jb_OverdrivenGuitar;
-    private javax.swing.JToggleButton jb_Piano;
-    private javax.swing.JToggleButton jb_StringEnsemble;
-    private javax.swing.JToggleButton jb_Violin;
-    private javax.swing.JMenu jm_OldInstrumentMenu;
-    private javax.swing.JMenuBar jmb_MainMenuBar;
-    private javax.swing.JMenuItem jmi_AcousticBass;
-    private javax.swing.JMenuItem jmi_BrassEnsemble;
-    private javax.swing.JMenuItem jmi_Choir;
-    private javax.swing.JMenuItem jmi_Clavinet;
-    private javax.swing.JMenuItem jmi_Drumkit;
-    private javax.swing.JMenuItem jmi_NylonGuitar;
-    private javax.swing.JMenuItem jmi_OverdrivenGuitar;
-    private javax.swing.JMenuItem jmi_Piano;
-    private javax.swing.JMenuItem jmi_StringEnsemble;
-    private javax.swing.JMenuItem jmi_Violin;
-    private javax.swing.JToolBar jtb_InstrumentToolbar;
+    private javax.swing.JToggleButton jb_Instrument1;
+    private javax.swing.JToggleButton jb_Instrument2;
+    private javax.swing.JToggleButton jb_Instrument3;
+    private javax.swing.JToggleButton jb_Instrument4;
+    private javax.swing.JToggleButton jb_Instrument5;
+    private javax.swing.JToggleButton jb_Instrument6;
+    private javax.swing.JToggleButton jb_Instrument7;
+    private javax.swing.JToggleButton jb_Instrument8;
+    private javax.swing.JToggleButton jb_Instrument9;
+    private javax.swing.JToggleButton jb_Istrument10;
+    private javax.swing.JPanel jpnl_InstrumentInfoArea;
+    private javax.swing.JPanel jpnl_Instruments;
     // End of variables declaration//GEN-END:variables
 
 }
