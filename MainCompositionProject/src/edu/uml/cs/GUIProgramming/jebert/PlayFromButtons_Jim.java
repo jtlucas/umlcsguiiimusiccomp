@@ -247,6 +247,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
             }
         });
 
+        jbrProgress.setToolTipText("Press desired position when playing or pausing the song to go to that location.");
         jbrProgress.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jbrProgressMousePressed(evt);
@@ -544,14 +545,16 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
                 / vecAllNumbersSequence.size() ) ;
         jbrProgress.setValue( jbrProgress.getValue() + jpbIncrement ) ;
         break ;
-    }
+    }    
+  }
 
-    // checks to see if it needs to be rounded a little more
-    if(jbrProgress.getValue() >= 98)
-    {
-        jbrProgress.setValue(100);
-    }
-    System.out.println(jbrProgress.getValue());
+  /**
+   * Used at the end of the play sequence to ensure that the progress bar
+   * is filled in case of rounding down
+   */
+  public void fillBarValue()
+  {
+      jbrProgress.setValue(jbrProgress.getMaximum());
   }
 
   /**
@@ -816,6 +819,7 @@ class PlaySequence extends Thread {
     if(!theApp.playPausePressed())
     {
         theApp.setButtonsOutOfThread();
+        theApp.fillBarValue();
     }
   }
 }

@@ -347,6 +347,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jbrProgress">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Press desired position when playing or pausing the song to go to that location."/>
+      </Properties>
       <Events>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbrProgressMousePressed"/>
       </Events>
