@@ -7,8 +7,11 @@
 package edu.uml.cs.GUIProgramming.jebert;
 
 import edu.uml.cs.GUIProgramming.heines.GUIUtilities;
+import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Rectangle;
 import java.util.Vector;
+import javax.swing.BoundedRangeModel;
 import javax.swing.JButton;
 
 
@@ -19,7 +22,11 @@ import javax.swing.JButton;
  * without "clobbering" each other
  * @author Jesse Heines, UMass Lowell Computer Science
  * @author  <a href="heines@cs.uml.edu">heines@cs.uml.edu</a>
- * @version 1.2, 2008-04-27, April 27, 2008
+ *
+ * Modified by Jim Ebert
+ * @author Jim Ebert, UMass Lowell Computer Science
+ * @author <a href="jim.ebert@comcast.net">jim.ebert@comcast.net</a>
+ * @version 1.1, 2009-3-17
  */
 public class PlayFromButtons_Jim extends javax.swing.JFrame {
   
@@ -29,28 +36,33 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
   /**
    * sequence of buttons pressed
    */
-  Vector<String> vecStoredSequence = new Vector<String>() ;
+  private Vector<String> vecStoredSequence = new Vector<String>() ;
 
   /**
    * sequence of buttons pressed
    */
-  Vector<String> vecAllNumbersSequence = new Vector<String>() ;
+  private Vector<String> vecAllNumbersSequence = new Vector<String>() ;
 
   /**
    * sequence to play, where 1 = vecStoredSequence and 2 = vecAllNumbersSequence
    */
-  int nSequenceToPlay = 1 ;
+  private int nSequenceToPlay = 1 ;
 
   /**
    * path to the audio files in Jim's src directory
    */
-  String strFilesHome = "src/edu/uml/cs/GUIProgramming/jebert/" ;
+  private String strFilesHome = "src/edu/uml/cs/GUIProgramming/jebert/" ;
 
   /**
    * array of names of WAV files
    */
-  String[] strFiles = { "zero", "one", "two", "three", "four",
+  private String[] strFiles = { "zero", "one", "two", "three", "four",
       "five", "six", "seven", "eight", "nine" } ;
+
+  /**
+   * Used to tell if playing the other thread
+   */
+  private boolean isInOtherThread;
 
 
   /** Creates new form PlayFromButtons */
@@ -62,6 +74,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
 
     // set background of text field to that of frame
     jtxfStoredSequence.setBackground( this.getBackground() ) ;
+    isInOtherThread = false;
   }
   
   /** This method is called from within the constructor to
@@ -259,7 +272,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn6)
                                 .addGap(47, 47, 47)
-                                .addComponent(jbrProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jbrProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,7 +286,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
                                 .addComponent(jlblStoredSequence)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbtnDelete)))
-                        .addGap(36, 36, 36))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnPlayStored, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -344,6 +357,32 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     thread.start() ;
   }//GEN-LAST:event_jbtnPlayStoredActionPerformed
 
+  /**
+   * Gets the current thread status
+   * @return boolean of whether it's in another thread or not
+   */
+  public boolean getThreadStatus()
+  {
+      return isInOtherThread;
+  }
+
+  /**
+   * Sets the thread status
+   * @param b boolean to set the thread status to
+   */
+  public void setThreadStatus(boolean b)
+  {
+      isInOtherThread = b;
+  }
+
+  /**
+   * Gets the max of the progress bar
+   * @return the progress bar max
+   */
+  public int getBarMax()
+  {
+      return jbrProgress.getMaximum();
+  }
   /**
    * This method deletes all elements in the stored sequence and disables 
    * the Play, Clear, and Delete buttons.
@@ -422,9 +461,11 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
   /**
    * Set the value of the progress bar to the value passed from the PlaySequence thread.
    */
-  public void incrementProgressBarValue() {
+  public void incrementProgressBarValue()
+  {
     int jpbIncrement ;
-    switch ( nSequenceToPlay ) {
+    switch ( nSequenceToPlay )
+    {
       case 1 :
         jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecStoredSequence.size() ) ;
         jbrProgress.setValue( jbrProgress.getValue() + jpbIncrement ) ;
@@ -436,12 +477,52 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     }
   }
 
-  private void jbrProgressMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbrProgressMousePressed
-      //Thread.currentThread().;
-      setCursor(Cursor.WAIT_CURSOR);
-      jbrProgress.setValue(50);
-      evt.getPoint();
+  /**
+   * Gets the value in the progress bar
+   * @return the value of the progress bar
+   */
+  public int getBarValue()
+  {
+      return jbrProgress.getValue();
+  }
 
+  /**
+   * Mouse listener for the progress bar.  It will go to the position that it is clicked on.
+   * @param evt a java Mouse event
+   */
+  private void jbrProgressMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbrProgressMousePressed
+      // only move the bar if it is getting updated
+      if(getThreadStatus() == false)
+      {
+          return;
+      }
+      
+      ((Component) this).setCursor(Cursor.getPredefinedCursor
+              (Cursor.WAIT_CURSOR));
+
+      int x = evt.getX();      
+      
+      Rectangle rec = jbrProgress.getBounds();
+      double nx = rec.getX();
+      double width = rec.getWidth(); //rec.
+
+      int value = (int) (100 * (x / width));
+     // jbrProgress.setValue(value);
+
+      // get the value back into the correct increment segment
+      int jpbIncrement ;
+    switch ( nSequenceToPlay ) {
+      case 1 :
+        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecStoredSequence.size() ) ;
+        value = jpbIncrement * Math.round(1.0f * value / jpbIncrement);
+        jbrProgress.setValue(value) ;
+        break ;
+      case 2 :
+        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecAllNumbersSequence.size() ) ;
+        value = jpbIncrement * Math.round(1.0f * value / jpbIncrement);
+        jbrProgress.setValue(value) ;
+        break ;
+    }
 
   }//GEN-LAST:event_jbrProgressMousePressed
 
@@ -502,7 +583,11 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
  * the user does not lose control of the UI.
  * @author Jesse Heines, UMass Lowell Computer Science
  * @author <a href="mailto:heines@cs.uml.edu">heines@cs.uml.edu</a>
- * @version 1.0, 2008-04-29, April 29, 2008
+ *
+ * * Modified by Jim Ebert
+ * @author Jim Ebert, UMass Lowell Computer Science
+ * @author <a href="jim.ebert@comcast.net">jim.ebert@comcast.net</a>
+ * @version 1.1, 2009-3-17
  */
 class PlaySequence extends Thread {
 
@@ -524,6 +609,7 @@ class PlaySequence extends Thread {
   {
     this.theApp = theApp ;
     this.vecSequence = vecSequence;
+    this.theApp.setThreadStatus(true);
   }
 
   /**
@@ -531,16 +617,28 @@ class PlaySequence extends Thread {
    */
   @Override
   public void run() {
-    for ( int k = 0 ; k < vecSequence.size() ; k++ ) {
+    for ( int k = 0 ; k < vecSequence.size() ; k++ ) 
+    {
+        // set it to say its not in this thread so the user cannot click on the
+        // progress bar at the perfect time and freeze the program in the waiting
+        // cursor stage
+        if(k == (vecSequence.size() - 1))
+        {
+            theApp.setThreadStatus(false);
+        }
+
+        if(((Component)theApp).getCursor().getType() == Cursor.WAIT_CURSOR)
+        {
+            int jpbIncrement = Math.round( 1.0f * theApp.getBarMax() /
+                    vecSequence.size() ) ;
+            k = Math.round(theApp.getBarValue() / jpbIncrement);
+
+          ((Component)theApp).setCursor(Cursor.getPredefinedCursor
+                  (Cursor.DEFAULT_CURSOR));
+        }
+        
       AePlayWave thread = new AePlayWave( vecSequence.get( k ) ) ;
       theApp.incrementProgressBarValue();
-
-      if(theApp.getCursorType() ==  Cursor.WAIT_CURSOR)
-      {
-          theApp.setCursor(Cursor.DEFAULT_CURSOR);
-          k = vecSequence.size();
-          break;
-      }
 
       thread.start() ;  // play the selected audio clip
       try {          
