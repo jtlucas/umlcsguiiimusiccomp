@@ -253,7 +253,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
             }
         });
 
-        jbtnPlayPause.setText("Play/Pause");
+        jbtnPlayPause.setText("Pause");
         jbtnPlayPause.setEnabled(false);
         jbtnPlayPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,53 +268,47 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxfStoredSequence, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jtxfStoredSequence, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(btn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlblStoredSequence)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnDelete))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn1)
+                                .addComponent(btn4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn3))
+                                .addComponent(btn6))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlblStoredSequence)
+                                .addComponent(btn7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbtnDelete))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn0)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn4)
+                                        .addComponent(btn8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btn5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btn6))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btn0)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btn8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btn9)))))
-                                .addGap(47, 47, 47)
-                                .addComponent(jbrProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                        .addComponent(btn9)))))
+                        .addGap(47, 47, 47)
+                        .addComponent(jbrProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtnPlayStored, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnPlayStored, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnClearStored)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnPlayPause)
-                        .addGap(71, 71, 71))
+                        .addComponent(jbtnPlayPause, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnPlayAll)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
-                        .addComponent(btnExit)
-                        .addContainerGap())))
+                        .addComponent(btnExit)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,6 +393,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
       btn9.setEnabled(false);
 
       jbtnPlayPause.setEnabled(true);
+      jbtnPlayPause.setText("Pause");
   }
 
   /**
@@ -427,6 +422,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
       btn9.setEnabled(true);
 
       jbtnPlayPause.setEnabled(false);
+      jbtnPlayPause.setText("Pause");
   }
 
   /**
@@ -539,11 +535,13 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     switch ( nSequenceToPlay )
     {
       case 1 :
-        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecStoredSequence.size() ) ;
+        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum()
+                / vecStoredSequence.size() ) ;
         jbrProgress.setValue( jbrProgress.getValue() + jpbIncrement ) ;
         break ;
       case 2 :
-        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecAllNumbersSequence.size() ) ;
+        jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum()
+                / vecAllNumbersSequence.size() ) ;
         jbrProgress.setValue( jbrProgress.getValue() + jpbIncrement ) ;
         break ;
     }
@@ -553,7 +551,6 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     {
         jbrProgress.setValue(100);
     }
-
     System.out.println(jbrProgress.getValue());
   }
 
@@ -619,9 +616,11 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
       if(!ppPressed)
       {          
           ppPressed = true;
+          jbtnPlayPause.setText("Play");
       }
       else
-      {       
+      {
+          jbtnPlayPause.setText("Pause");
           ppPressed = false;
 
           int value = jbrProgress.getValue();
