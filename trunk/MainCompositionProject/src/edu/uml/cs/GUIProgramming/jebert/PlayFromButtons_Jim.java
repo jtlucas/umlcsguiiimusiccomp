@@ -547,6 +547,14 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
         jbrProgress.setValue( jbrProgress.getValue() + jpbIncrement ) ;
         break ;
     }
+
+    // checks to see if it needs to be rounded a little more
+    if(jbrProgress.getValue() >= 98)
+    {
+        jbrProgress.setValue(100);
+    }
+
+    System.out.println(jbrProgress.getValue());
   }
 
   /**
