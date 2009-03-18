@@ -25,12 +25,13 @@ public class InstrumentInfo extends javax.swing.JFrame {
 
     /** Creates new form InstrumentInfo */
     public InstrumentInfo() {
+        //Use static method from heines utilities to set windows style UIManager
+        edu.uml.cs.GUIProgramming.heines.GUIUtilities.SetNetBeansCompatibleUIManager();
         //create a new orchestra
         myOrchestra = new Orchestra();
         initComponents();
         //set label text to reflect the current state of the orchestra
-        jl_SelectedChannel.setText("Channel:  " + (myOrchestra.getSelectedChannel() + 1) );
-        jl_SelectedInstrument.setText("Instrument:  " + myOrchestra.getSelectedInstrumentName());
+        updateInstrumentInformationLabels();
     }
 
     /**
@@ -61,8 +62,8 @@ public class InstrumentInfo extends javax.swing.JFrame {
             Runnable updateInfoPanel = new Runnable() {
                 public void run() {
                     //update label text to reflect the current state of the orchestra
-                    jl_SelectedChannel.setText("Channel:  " + (myOrchestra.getSelectedChannel() + 1) );
-                    jl_SelectedInstrument.setText("Instrument:  " + myOrchestra.getSelectedInstrumentName());
+                    updateInstrumentInformationLabels();
+                    //update the combo box to point at the instrument selected on the new midi channel
                     jcb_InstrumentSelect.setSelectedIndex(myOrchestra.getSelectedInstrument());
                 }
             };
@@ -76,7 +77,7 @@ public class InstrumentInfo extends javax.swing.JFrame {
    * @param jpnl - JPanel to attach information panel to.
    */
     public void attachInfoPanel( javax.swing.JPanel jpnl ) {
-      jpnl.add(jpnl_InstrumentInformation, -1);
+        jpnl.add(jpnl_InstrumentInformation);
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -161,9 +162,7 @@ public class InstrumentInfo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnl_InstrumentInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addComponent(jpnl_InstrumentInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -178,11 +177,18 @@ public class InstrumentInfo extends javax.swing.JFrame {
         // Update the orchestra with the newly selected instrument
         myOrchestra.setInstrument( myOrchestra.getSelectedChannel(), jcb_InstrumentSelect.getSelectedIndex() );
         // Play a note for the user, (Middle C)
-        myOrchestra.playNote(myOrchestra.getSelectedChannel(), 60, 127, 500);
+        myOrchestra.playNote(myOrchestra.getSelectedChannel(), 60, 80, 500);
         // Update label text to reflect the current state of the orchestra
-        jl_SelectedChannel.setText("Channel:  " + (myOrchestra.getSelectedChannel() + 1) );
-        jl_SelectedInstrument.setText("Instrument:  " + myOrchestra.getSelectedInstrumentName());
+        updateInstrumentInformationLabels();
 }//GEN-LAST:event_jcb_InstrumentSelectActionPerformed
+
+    /**
+     * Update selected channel and selected instrument labels to reflect the state of the orchestra.
+     */
+    private void updateInstrumentInformationLabels() {
+        jl_SelectedChannel.setText("Midi Channel:  " + (myOrchestra.getSelectedChannel() + 1) );
+        jl_SelectedInstrument.setText("Instrument:  " + myOrchestra.getSelectedInstrumentName());
+    }
 
     /**
     * @param args the command line arguments
