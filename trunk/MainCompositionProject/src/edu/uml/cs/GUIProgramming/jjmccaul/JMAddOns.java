@@ -46,14 +46,14 @@ public class JMAddOns extends JPanel {
     }
 
     public JMAddOns(JFrame f){
-//        f.getContentPane().remove(new Resizing());
-//        f.getContentPane().add(new Resizing());
+//        f.getContentPane().remove(new SquareSizer());
+//        f.getContentPane().add(new SquareSizer());
 //        f.getContentPane().add(new TriangleSizer());
         initComponents(f);
         this.invalidate();
     }
 
-    public void inRect(Resizing c, java.awt.event.MouseEvent me){
+    public void inRect(SquareSizer c, java.awt.event.MouseEvent me){
         Rectangle re = c.rect;
         offx = re.x - me.getX();
         offy = re.y - me.getY();
@@ -74,9 +74,7 @@ public class JMAddOns extends JPanel {
         }
         else{
             moving = false;
-        }
-        System.out.println(moving);
-    
+        }    
     }
 
     public void inCirc(EllipseSizer es, java.awt.event.MouseEvent me){
@@ -111,9 +109,9 @@ public class JMAddOns extends JPanel {
         }
     }
 
-    public void moveRect(Resizing rs, java.awt.event.MouseEvent me){
+    public void moveRect(SquareSizer rs, java.awt.event.MouseEvent me){
         if(moving == true){
-//            Resizing component = rs;
+//            SquareSizer component = rs;
 //            Rectangle re = component.rect;
 //            re.setLocation(offx + me.getX(), offy + me.getY());
 //            component.repaint();
