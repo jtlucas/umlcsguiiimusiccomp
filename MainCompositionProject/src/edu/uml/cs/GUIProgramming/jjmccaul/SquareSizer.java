@@ -14,7 +14,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Resizing extends JPanel {
+
+public class SquareSizer extends JPanel {
     Rectangle rect = new Rectangle(100,100,150,150);
 
     protected void paintComponent(Graphics g) {
@@ -27,7 +28,7 @@ public class Resizing extends JPanel {
     }
 
     public static void main(String[] args) {
-        Resizing test = new Resizing();
+        SquareSizer test = new SquareSizer();
         Resizer resizer = new Resizer(test);
         test.addMouseListener(resizer);
         test.addMouseMotionListener(resizer);
@@ -40,20 +41,19 @@ public class Resizing extends JPanel {
         new JMAddOns(f);
     }
 }
-
 /**
  * MouseAdapter okay for j2se 1.6+
  * Use MouseInputAdapter for j2se 1.5-
  */
 class Resizer extends MouseAdapter {
     JMAddOns jmao = new JMAddOns();
-    Resizing component;
+    SquareSizer component;
     boolean dragging = false;
     boolean moving = false;
     // Give user some leeway for selections.
     final int PROX_DIST = 3;
 
-    public Resizer(Resizing r) {
+    public Resizer(SquareSizer r) {
         component = r;
     }
 
