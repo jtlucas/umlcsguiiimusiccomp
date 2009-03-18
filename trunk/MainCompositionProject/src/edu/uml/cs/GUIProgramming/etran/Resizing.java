@@ -12,7 +12,7 @@ import javax.swing.*;
 /**
  *  This was edited to accomodate the other attributes of the Resizing class
  *  such as images and border colors. 
- * @author Professor Heines editted by Elizabeth Tran
+ * @author Professor Heines edited by Elizabeth Tran
  */
 
 public class Resizing extends JPanel {
@@ -20,47 +20,49 @@ public class Resizing extends JPanel {
     Color initC = Color.blue;
     /** The rectangle represented in the JPanel */
     Rectangle rect = new Rectangle(50,50,150,150);
-    /**Label for the image that the rectangle holds */
-    JLabel Img = new JLabel();
-
-    /**Constructor adds the image */
-    Resizing() {
-        Img.setBounds(rect.x+2, rect.y+2, rect.width-2, rect.height-2);
-        this.add(Img);
-    }
-
-    /**
-     * Sets up the JLabel to show the following icon
-     * @param icon the image icon passed by the File chooser
-     */
-    public void setUp( ImageIcon imgIcon ) {
-        //Scales the image if it isn't null
-        if( imgIcon != null) {
-            Image ImgtoScale = imgIcon.getImage();
-            Image scaledImg = ImgtoScale.getScaledInstance( rect.width, rect.height, Image.SCALE_SMOOTH);
-            Img.setIcon(new ImageIcon(scaledImg));
-        } else {
-            //otherwise just set the icon to null
-            Img.setIcon(imgIcon);
-        }
-        //repaints the component
-        paintComponent(this.getGraphics());
-    }
-
-    /**
-     * This is a faulty method, changes the size of the icon as well as the label
-     * while the rectangle is constantly resized.
-     * @param x the new x-coordinate
-     * @param y the new y-coordinate
-     * @param w the new width
-     * @param h the new height
-     */
-    public void sizeChange(int x, int y, int w, int h) {
-        //resets the bounds of the Jlabel
-        Img.setBounds(x, y, w, h);
-        //Sets up the image with the new scale
-        setUp((ImageIcon)Img.getIcon());
-    }
+//    /**Label for the image that the rectangle holds */
+//    JLabel Img = new JLabel();
+//
+//    /**Constructor adds the image */
+//    Resizing() {
+////        new ResizingUtilities();
+//        Img.setBounds(rect.x+2, rect.y+2, rect.width-2, rect.height-2);
+//        this.add(Img);
+//    }
+//
+//    /**
+//     * Sets up the JLabel to show the following icon
+//     * @param icon the image icon passed by the File chooser
+//     */
+//    public void setUp( ImageIcon imgIcon ) {
+//        //Scales the image if it isn't null
+//        if( imgIcon != null) {
+//            Image ImgtoScale = imgIcon.getImage();
+//            Image scaledImg = ImgtoScale.getScaledInstance( rect.width, rect.height, Image.SCALE_SMOOTH);
+//            Img.setIcon(new ImageIcon(scaledImg));
+//        } else {
+//            //otherwise just set the icon to null
+//            Img.setIcon(imgIcon);
+//        }
+//        //repaints the component
+//        paintComponent(this.getGraphics());
+//    }
+//
+//    /**
+//     * This is a faulty method because the pixels blink as it changes, changes
+//     * the size of the icon as well as the label while the rectangle is
+//     * constantly resized.
+//     * @param x the new x-coordinate
+//     * @param y the new y-coordinate
+//     * @param w the new width
+//     * @param h the new height
+//     */
+//    public void sizeChange(int x, int y, int w, int h) {
+//        //resets the bounds of the Jlabel
+//        Img.setBounds(x, y, w, h);
+//        //Sets up the image with the new scale
+//        setUp((ImageIcon)Img.getIcon());
+//    }
     /**
      * Sets up the border and image of the rectangle
      * @param g The graphics of this object
@@ -73,6 +75,13 @@ public class Resizing extends JPanel {
         g2.setPaint(initC);
         g2.draw(rect);
     }
+
+//    /**
+//     * Returns the Img's Icon
+//     */
+//    public Icon getImgIcon() {
+//        return Img.getIcon();
+//    }
 
     /**
      * Repaints the rectangle
@@ -120,46 +129,46 @@ class Resizer extends MouseAdapter {
                 case Cursor.N_RESIZE_CURSOR:
                     int height = r.height - dy;
                     r.setRect(r.x, r.y+dy, r.width, height);
-                    component.sizeChange(r.x, r.y+dy, r.width, height);
+                    ((ResizingUtilities)component).sizeChange(r.x, r.y+dy, r.width, height);
                     break;
                 case Cursor.NW_RESIZE_CURSOR:
                     int width = r.width - dx;
                     height = r.height - dy;
                     r.setRect(r.x+dx, r.y+dy, width, height);
-                    component.sizeChange(r.x+dx, r.y+dy, width, height);
+                    ((ResizingUtilities)component).sizeChange(r.x+dx, r.y+dy, width, height);
                     break;
                 case Cursor.W_RESIZE_CURSOR:
                     width = r.width - dx;
                     r.setRect(r.x+dx, r.y, width, r.height);
-                    component.sizeChange(r.x+dx, r.y, width, r.height);
+                    ((ResizingUtilities)component).sizeChange(r.x+dx, r.y, width, r.height);
                     break;
                 case Cursor.SW_RESIZE_CURSOR:
                     width = r.width - dx;
                     height = dy;
                     r.setRect(r.x+dx, r.y, width, height);
-                    component.sizeChange(r.x+dx, r.y, width, height);
+                    ((ResizingUtilities)component).sizeChange(r.x+dx, r.y, width, height);
                     break;
                 case Cursor.S_RESIZE_CURSOR:
                     height = dy;
                     r.setRect(r.x, r.y, r.width, height);
-                    component.sizeChange(r.x, r.y, r.width, height);
+                    ((ResizingUtilities)component).sizeChange(r.x, r.y, r.width, height);
                     break;
                 case Cursor.SE_RESIZE_CURSOR:
                     width = dx;
                     height = dy;
                     r.setRect(r.x, r.y, width, height);
-                    component.sizeChange(r.x, r.y, width, height);
+                    ((ResizingUtilities)component).sizeChange(r.x, r.y, width, height);
                     break;
                 case Cursor.E_RESIZE_CURSOR:
                     width = dx;
                     r.setRect(r.x, r.y, width, r.height);
-                    component.sizeChange(r.x, r.y, width, r.height);
+                    ((ResizingUtilities)component).sizeChange(r.x, r.y, width, r.height);
                     break;
                 case Cursor.NE_RESIZE_CURSOR:
                     width = dx;
                     height = r.height - dy;
                     r.setRect(r.x, r.y+dy, width, height);
-                    component.sizeChange(r.x, r.y+dy, width, height);
+                    ((ResizingUtilities)component).sizeChange(r.x, r.y+dy, width, height);
                     break;
                 default:
                     System.out.println("unexpected type: " + type);
