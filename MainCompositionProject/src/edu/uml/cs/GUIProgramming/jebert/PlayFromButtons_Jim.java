@@ -11,7 +11,6 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Rectangle;
 import java.util.Vector;
-import javax.swing.BoundedRangeModel;
 import javax.swing.JButton;
 
 
@@ -64,6 +63,11 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
    */
   private boolean isInOtherThread;
 
+  /**
+   * Tells whether the play pause button has been pressed
+   */
+  private boolean ppPressed;
+
 
   /** Creates new form PlayFromButtons */
   public PlayFromButtons_Jim() {
@@ -75,6 +79,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     // set background of text field to that of frame
     jtxfStoredSequence.setBackground( this.getBackground() ) ;
     isInOtherThread = false;
+    ppPressed = false;
   }
   
   /** This method is called from within the constructor to
@@ -103,6 +108,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
         btn0 = new javax.swing.JButton();
         jbtnDelete = new javax.swing.JButton();
         jbrProgress = new javax.swing.JProgressBar();
+        jbtnPlayPause = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Play from Buttons");
@@ -247,6 +253,14 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
             }
         });
 
+        jbtnPlayPause.setText("Play/Pause");
+        jbtnPlayPause.setEnabled(false);
+        jbtnPlayPause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPlayPauseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,36 +276,40 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn2)
+                                .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn3))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn6)
-                                .addGap(47, 47, 47)
-                                .addComponent(jbrProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn0)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btn9))))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlblStoredSequence)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbtnDelete)))
+                                .addComponent(jbtnDelete))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btn6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btn0)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btn8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btn9)))))
+                                .addGap(47, 47, 47)
+                                .addComponent(jbrProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnPlayStored, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnClearStored)
-                        .addGap(162, 162, 162))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnPlayPause)
+                        .addGap(71, 71, 71))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnPlayAll)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
@@ -322,7 +340,7 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
                         .addComponent(btn0))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(jbrProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbrProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblStoredSequence)
@@ -332,7 +350,8 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnPlayStored)
-                    .addComponent(jbtnClearStored))
+                    .addComponent(jbtnClearStored)
+                    .addComponent(jbtnPlayPause))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnPlayAll)
@@ -350,12 +369,65 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
    * @param evt a standard Java action event for a JButton 
    */
   private void jbtnPlayStoredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPlayStoredActionPerformed
-    //System.out.println("m");
     jbrProgress.setValue( 0 ) ;
     nSequenceToPlay = 1 ;   // 1 = vecStoredSequence
+
     PlaySequence thread = new PlaySequence( this, vecStoredSequence) ;
-    thread.start() ;
+    
+    thread.start() ;    
   }//GEN-LAST:event_jbtnPlayStoredActionPerformed
+
+  /**
+   * Sets buttons for entering the thread
+   */
+  public void setButtonsInThread()
+  {
+      jbtnPlayAll.setEnabled(false);
+      jbtnPlayStored.setEnabled(false);
+      jbtnDelete.setEnabled(false);
+      jbtnClearStored.setEnabled(false);
+
+      btn0.setEnabled(false);
+      btn1.setEnabled(false);
+      btn2.setEnabled(false);
+      btn3.setEnabled(false);
+      btn4.setEnabled(false);
+      btn5.setEnabled(false);
+      btn6.setEnabled(false);
+      btn7.setEnabled(false);
+      btn8.setEnabled(false);
+      btn9.setEnabled(false);
+
+      jbtnPlayPause.setEnabled(true);
+  }
+
+  /**
+   * Sets buttons for exiting the thread
+   */
+  public void setButtonsOutOfThread()
+  {
+      jbtnPlayAll.setEnabled(true);
+
+      if(!(jtxfStoredSequence.getText().trim().equals("")))
+      {
+          jbtnPlayStored.setEnabled(true);
+          jbtnDelete.setEnabled(true);
+          jbtnClearStored.setEnabled(true);
+      }
+
+      btn0.setEnabled(true);
+      btn1.setEnabled(true);
+      btn2.setEnabled(true);
+      btn3.setEnabled(true);
+      btn4.setEnabled(true);
+      btn5.setEnabled(true);
+      btn6.setEnabled(true);
+      btn7.setEnabled(true);
+      btn8.setEnabled(true);
+      btn9.setEnabled(true);
+
+      jbtnPlayPause.setEnabled(false);
+  }
 
   /**
    * Gets the current thread status
@@ -492,11 +564,11 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
    */
   private void jbrProgressMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbrProgressMousePressed
       // only move the bar if it is getting updated
-      if(getThreadStatus() == false)
+      if(!getThreadStatus())
       {
           return;
       }
-      
+
       ((Component) this).setCursor(Cursor.getPredefinedCursor
               (Cursor.WAIT_CURSOR));
 
@@ -524,8 +596,61 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
         break ;
     }
 
+    if(ppPressed)
+    {
+        jbtnPlayPauseActionPerformed(null);
+    }
   }//GEN-LAST:event_jbrProgressMousePressed
 
+  /**
+   * Pauses and plays the current thread
+   * @param evt a java action event
+   */
+  private void jbtnPlayPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPlayPauseActionPerformed
+      
+      if(!ppPressed)
+      {          
+          ppPressed = true;
+      }
+      else
+      {       
+          ppPressed = false;
+
+          int value = jbrProgress.getValue();
+          int jpbIncrement ;
+
+          switch ( nSequenceToPlay ) {
+          case 1 :
+            jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecStoredSequence.size() ) ;
+            value = Math.round(1.0f * value / jpbIncrement );
+            PlaySequence thread = new PlaySequence( this, vecStoredSequence, value) ;
+            thread.start() ;
+            break ;
+          case 2 :
+            jpbIncrement = Math.round( 1.0f * jbrProgress.getMaximum() / vecAllNumbersSequence.size() ) ;
+            value = Math.round(1.0f * value / jpbIncrement );
+            PlaySequence threadB = new PlaySequence( this, vecAllNumbersSequence, value) ;
+            threadB.start() ;
+            break ;
+          }
+      }     
+  }//GEN-LAST:event_jbtnPlayPauseActionPerformed
+
+  /**
+   * Set the PlayPause button off
+   */
+  public void setPlayPauseOff()
+  {
+      jbtnPlayPause.setEnabled(false);
+  }
+  /**
+   * Gets the status of ppPressed
+   * @return whether the play/pause button was pressed
+   */
+  public boolean playPausePressed()
+  {
+      return ppPressed;
+  }
   /**
    * @param args the command line arguments
    */
@@ -568,6 +693,8 @@ public class PlayFromButtons_Jim extends javax.swing.JFrame {
     private javax.swing.JButton jbtnDelete;
     /** button to play the 0 to 9 sounds in sequence as a test */
     private javax.swing.JButton jbtnPlayAll;
+    /** pauses and plays the current thread */
+    private javax.swing.JButton jbtnPlayPause;
     /** button to play the stored sequence */
     private javax.swing.JButton jbtnPlayStored;
     /** label for the text field that displays the stored sequence */
@@ -602,7 +729,13 @@ class PlaySequence extends Thread {
   Vector<String> vecSequence = new Vector<String>() ;
 
   /**
-   * constructor
+   * lets you know where to start in the array
+   */
+  private int k;
+
+  /**
+   * Reqular constructor
+   * @param theApp the calling application
    * @param vecSequence required sequence of WAV file paths to play
    */
   public PlaySequence( PlayFromButtons_Jim theApp, Vector<String> vecSequence)
@@ -610,6 +743,24 @@ class PlaySequence extends Thread {
     this.theApp = theApp ;
     this.vecSequence = vecSequence;
     this.theApp.setThreadStatus(true);
+    this.theApp.setButtonsInThread();
+    k = 0;
+  }
+
+  /**
+   * Constructor used from play pause
+   * @param theApp the calling application
+   * @param vecSequence required sequence of WAV file paths to play
+   * @param n where to start in the array
+   */
+  public PlaySequence( PlayFromButtons_Jim theApp, Vector<String> vecSequence,
+          int n)
+  {
+    this.theApp = theApp ;
+    this.vecSequence = vecSequence;
+    this.theApp.setThreadStatus(true);
+    this.theApp.setButtonsInThread();
+    k = n;
   }
 
   /**
@@ -617,7 +768,7 @@ class PlaySequence extends Thread {
    */
   @Override
   public void run() {
-    for ( int k = 0 ; k < vecSequence.size() ; k++ ) 
+    for (; k < vecSequence.size() ; k++ ) 
     {
         // set it to say its not in this thread so the user cannot click on the
         // progress bar at the perfect time and freeze the program in the waiting
@@ -625,7 +776,8 @@ class PlaySequence extends Thread {
         if(k == (vecSequence.size() - 1))
         {
             theApp.setThreadStatus(false);
-        }
+            theApp.setPlayPauseOff();
+        }        
 
         if(((Component)theApp).getCursor().getType() == Cursor.WAIT_CURSOR)
         {
@@ -644,11 +796,18 @@ class PlaySequence extends Thread {
       try {          
         thread.join() ; // wait for the thread playing to clip to die
       } catch ( InterruptedException ie ) {
-          theApp.setCursor(Cursor.DEFAULT_CURSOR);
-        // do nothing - required by the join() method
-        //    this is a "checked exception", therefore it must be caught
+          ((Component)theApp).setCursor(Cursor.getPredefinedCursor
+                  (Cursor.DEFAULT_CURSOR));        
       }
-      //theApp.incrementProgressBarValue();
+
+      if(theApp.playPausePressed())
+      {
+          k = vecSequence.size();
+      }
+    }
+    if(!theApp.playPausePressed())
+    {
+        theApp.setButtonsOutOfThread();
     }
   }
 }
