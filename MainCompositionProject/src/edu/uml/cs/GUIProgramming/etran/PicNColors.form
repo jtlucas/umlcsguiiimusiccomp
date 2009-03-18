@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Component class="javax.swing.JFileChooser" name="jImgChooser">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="/** The file chooser that sets the icon within the square to the chosen file */"/>
+        <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** The file chooser that sets the icon within the square to the chosen file */"/>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="        //Add a custom file filter and disable the default&#xa;        //(Accept All) file filter.&#xa;            jImgChooser.addChoosableFileFilter(new ImageFilter());&#xa;            jImgChooser.setAcceptAllFileFilterUsed(false);&#xa;&#xa;        //Add custom icons for file types.&#xa;            jImgChooser.setFileView(new ImageFileView());&#xa;&#xa;        //Add the preview pane.&#xa;            jImgChooser.setAccessory(new ImagePreview(jImgChooser));"/>
       </AuxValues>
     </Component>
@@ -77,9 +77,9 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="Square">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new Resizing();"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new ResizingUtilities();"/>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="        Resizer resizer = new Resizer((Resizing)Square);&#xa;        Square.addMouseListener(resizer);&#xa;        Square.addMouseMotionListener(resizer);"/>
-        <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** The Resizing object that holds a rectangle */"/>
+        <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** The ResizingUtilities object that holds a rectangle */"/>
       </AuxValues>
 
       <Layout>
@@ -115,6 +115,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/* Deletes the image set in the rectangle */"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jDeleteImg.setEnabled(false);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jChngColor">

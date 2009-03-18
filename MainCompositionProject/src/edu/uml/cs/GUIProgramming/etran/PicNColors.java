@@ -12,13 +12,13 @@
 
 package edu.uml.cs.GUIProgramming.etran;
 
-//import edu.uml.cs.GUIProgramming.MusicComp.*;
-
+import edu.uml.cs.GUIProgramming.MusicComp.*;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+
 
 
 /**
@@ -31,7 +31,7 @@ public class PicNColors extends javax.swing.JFrame {
     static final long serialVersionUID = 0 ;
     
     /** The main application for reference within this class. */
-    //Main mainApp = null;
+    Main mainApp = null;
 
     /** Creates new form PicNColors */
     public PicNColors() {
@@ -42,10 +42,10 @@ public class PicNColors extends javax.swing.JFrame {
    * Call this constructor from the Main application to initialize the class level mainApp object.
    * @param mainApp the main application for reference within this class
    */
-  //public PicNColors( Main mainApp ) {
-    //this();   // call the default constructor, which must always be called first
-    //this.mainApp = mainApp;   // save the reference to the Main application
-  //}
+  public PicNColors( Main mainApp ) {
+    this();   // call the default constructor, which must always be called first
+    this.mainApp = mainApp;   // save the reference to the Main application
+  }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -58,7 +58,7 @@ public class PicNColors extends javax.swing.JFrame {
 
         jImgChooser = new javax.swing.JFileChooser();
         jColorChooser = new javax.swing.JColorChooser();
-        Square =  new Resizing();
+        Square =  new ResizingUtilities();
         Resizer resizer = new Resizer((Resizing)Square);
         Square.addMouseListener(resizer);
         Square.addMouseMotionListener(resizer);
@@ -100,6 +100,7 @@ public class PicNColors extends javax.swing.JFrame {
         });
 
         jDeleteImg.setText("Delete Image");
+        jDeleteImg.setEnabled(false);
         jDeleteImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jDeleteImgActionPerformed(evt);
@@ -162,11 +163,11 @@ public class PicNColors extends javax.swing.JFrame {
      * @param evt A Standard Java ActionEvent
      */
     private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
-//      if ( mainApp != null ) {
-//        mainApp.btnExitActionPerformed();   // note call to method in Main class
-//      } else {
+      if ( mainApp != null ) {
+       mainApp.btnExitActionPerformed();   // note call to method in Main class
+      } else {
         System.exit( 0 );
-//      }
+      }
     }//GEN-LAST:event_jExitButtonActionPerformed
 
     /**
@@ -187,7 +188,8 @@ public class PicNColors extends javax.swing.JFrame {
      */
     private void jDeleteImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteImgActionPerformed
         //Deletes the image
-        ((Resizing) Square).setUp(null);
+        ((ResizingUtilities) Square).setUp(null);
+        jDeleteImg.setEnabled(false);
     }//GEN-LAST:event_jDeleteImgActionPerformed
 
     /**
@@ -198,10 +200,11 @@ public class PicNColors extends javax.swing.JFrame {
         // TODO add your handling code here:
         String imgPath = setupImageFileChooser();
         ImageIcon ImgIcon = new ImageIcon(imgPath);
-        System.out.println(imgPath);
+        //System.out.println(imgPath);
 //        Image ImgtoScale = ImgIcon.getImage();
 //        Image scaledImg = ImgtoScale.getScaledInstance( width, height, Image.SCALE_SMOOTH);
-        ((Resizing) Square).setUp(ImgIcon);
+        ((ResizingUtilities) Square).setUp(ImgIcon);
+        jDeleteImg.setEnabled(true);
     }//GEN-LAST:event_jAddImgActionPerformed
 
 
@@ -213,21 +216,6 @@ public class PicNColors extends javax.swing.JFrame {
     private String setupImageFileChooser() {
 
         String path;                // The absolute path to the image selected
-//Repeated in the post init generated code
-//        //Set up the file chooser.
-//        if ( jImgChooser == null) {
-//
-//        //Add a custom file filter and disable the default
-//        //(Accept All) file filter.
-//            jImgChooser.addChoosableFileFilter(new ImageFilter());
-//            jImgChooser.setAcceptAllFileFilterUsed(false);
-//
-//        //Add custom icons for file types.
-//            jImgChooser.setFileView(new ImageFileView());
-//
-//        //Add the preview pane.
-//            jImgChooser.setAccessory(new ImagePreview(jImgChooser));
-//        }
 
         //Show it.
         int returnVal = jImgChooser.showDialog(this,
@@ -248,6 +236,48 @@ public class PicNColors extends javax.swing.JFrame {
     }
 
     /**
+     * This is the public version of the adding an image to a rectangle that
+     * can be called from other classes
+     */
+    public void addImgActionPerformed() {
+        jAddImgActionPerformed(null);
+    }
+
+    /**
+     * This is the public version of deleting an image from a rectangle
+     * that can be called from other classes.
+     */
+    public void dltImgActionPerformed() {
+        jDeleteImgActionPerformed(null);
+    }
+
+    /**
+     * This is the public version of changing the color of the rectangle that
+     * can be called from other classes.
+     */
+    public void chngColorActionPerformed() {
+        jChngColorActionPerformed(null);
+    }
+
+    public void addClrNImgChoosers() {
+        jImgChooser = new javax.swing.JFileChooser();
+        jColorChooser = new javax.swing.JColorChooser();
+
+        //Add a custom file filter and disable the default
+        //(Accept All) file filter.
+        jImgChooser.addChoosableFileFilter(new ImageFilter());
+        jImgChooser.setAcceptAllFileFilterUsed(false);
+
+        //Add custom icons for file types.
+        jImgChooser.setFileView(new ImageFileView());
+
+        //Add the preview pane.
+        jImgChooser.setAccessory(new ImagePreview(jImgChooser));
+
+        return;
+    }
+
+    /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
@@ -259,7 +289,7 @@ public class PicNColors extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    /** The Resizing object that holds a rectangle */
+    /** The ResizingUtilities object that holds a rectangle */
     private javax.swing.JPanel Square;
     /** Adds an image from the file chooser to the rectangle, Square. */
     private javax.swing.JButton jAddImg;
@@ -271,8 +301,8 @@ public class PicNColors extends javax.swing.JFrame {
     private javax.swing.JButton jDeleteImg;
     /** Exits the Application */
     private javax.swing.JButton jExitButton;
-    private javax.swing.JFileChooser jImgChooser;
     /** The file chooser that sets the icon within the square to the chosen file */
+    private javax.swing.JFileChooser jImgChooser;
     // End of variables declaration//GEN-END:variables
 
 }
