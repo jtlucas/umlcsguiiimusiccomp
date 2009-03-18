@@ -39,7 +39,7 @@ public class Resizing_Jer extends JPanel {
         f.setSize(400,400);
         f.setLocation(100,100);
         f.setVisible(true);
-        new JMAddOns(f);
+        new JMAddOns_Jer(f);
     }
 }
 /**
@@ -47,7 +47,7 @@ public class Resizing_Jer extends JPanel {
  * Use MouseInputAdapter for j2se 1.5-
  */
 class Resizer extends MouseAdapter {
-    JMAddOns jmao = new JMAddOns();
+    JMAddOns_Jer jmao = new JMAddOns_Jer();
     Resizing_Jer component;
     boolean dragging = false;
     boolean moving = false;
