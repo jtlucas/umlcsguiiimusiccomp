@@ -67,7 +67,10 @@ public class JTL_WindowSize extends javax.swing.JFrame {
   private void initComponents() {
 
     jspCanvas = new javax.swing.JScrollPane();
-    jplCanvas = new javax.swing.JPanel();
+    jplCanvas = new JTL_ResizingTest();
+    Resizer resizer = new Resizer((JTL_ResizingTest)jplCanvas);
+    jplCanvas.addMouseListener(resizer);
+    jplCanvas.addMouseMotionListener(resizer);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(800, 700));

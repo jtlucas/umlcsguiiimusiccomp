@@ -42,47 +42,69 @@ public class JTL_ShapeResize {
      * This method is intended to be called from other classes.
      * This function will return false when the size of the shape is equal to the maximum value
      * @param shape the shape object passed to the function
-     * @return boolean true for if the shape can still be re-sized but false if it is equal to the maximum
+     * @return int 1: When the width equals the shape maximum width
+     *             2: When the width is less than the shape maximum width
+     *             3: When the height equals the shape maximum height
+     *             4: When the height is less than the shape maximum height
      */
-    public boolean Max_Shape_Resize ( RectangularShape shape ){
+    public int Max_Shape_Resize ( RectangularShape shape ){
 
         double height = shape.getHeight();
         double width = shape.getWidth();
 
         JTL_ShapeSize defaultshape = new JTL_ShapeSize();
 
-        if( height == defaultshape.getShapeMaxHeight()){
-            return false;
-        }
-
         if( width == defaultshape.getShapeMaxWidth()){
-            return false;
+            return 1;
         }
 
-        return true;
+        if( width > defaultshape.getShapeMaxWidth()){
+            return 2;
+        }
+
+        if( height == defaultshape.getShapeMaxHeight()){
+            return 3;
+        }
+
+        if( height > defaultshape.getShapeMaxHeight()){
+            return 4;
+        }
+        
+        return 0;
     }
     /**
      * This method is intended to be called from other classes.
      * This function will return false when the size of the shape is equal to the minimum value
      * @param shape the shape object passed to the function
-     * @return boolean true for if the shape can still be re-sized but false if it is equal to the minimum
+     * @return int 1: When the width equals the shape minimum width
+     *             2: When the width is less than the shape minimum width
+     *             3: When the height equals the shape minimum height
+     *             4: When the height is less than the shape minimum height
      */
-    public boolean Min_Shape_Resize ( RectangularShape shape ){
+    public int Min_Shape_Resize ( RectangularShape shape ){
 
         double height = shape.getHeight();
         double width = shape.getWidth();
 
         JTL_ShapeSize defaultshape = new JTL_ShapeSize();
 
-        if( height == defaultshape.getShapeMinHeight()){
-            return false;
-        }
-
         if( width == defaultshape.getShapeMinWidth()){
-            return false;
+            return 1;
         }
 
-        return true;
+        if( width < defaultshape.getShapeMinWidth()){
+            return 2;
+        }
+
+        if( height == defaultshape.getShapeMinHeight()){
+            return 3;
+        }
+
+        if( height < defaultshape.getShapeMinHeight()){
+            return 4;
+        }
+
+        return 0;
     }
 
      /**
@@ -95,7 +117,7 @@ public class JTL_ShapeResize {
 
         double ypos = shape.getY();
 
-        if( ypos == Canvas_Ypos ){
+        if( ypos >= Canvas_Ypos ){
             return false;
         }
 
