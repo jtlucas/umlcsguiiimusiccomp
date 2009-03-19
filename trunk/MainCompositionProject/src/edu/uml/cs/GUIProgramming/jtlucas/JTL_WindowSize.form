@@ -70,6 +70,8 @@
             </Property>
           </Properties>
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTL_ResizingTest()"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="Resizer resizer = new Resizer((JTL_ResizingTest)jplCanvas);&#xd;&#xa;jplCanvas.addMouseListener(resizer);&#xd;&#xa;jplCanvas.addMouseMotionListener(resizer);"/>
             <AuxValue name="JavaCodeGenerator_DeclarationPre" type="java.lang.String" value="/** This is the panel that represents the canvas */"/>
           </AuxValues>
 
